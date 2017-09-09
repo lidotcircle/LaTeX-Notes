@@ -1,0 +1,30 @@
+\input{preamble}
+
+\definecolor{titlef}{rgb}{0.2, 0.8, 0.4}
+\definecolor{titles}{rgb}{0.2, 0.7, 0.9}
+
+\begin{document}
+
+\frontmatter
+
+\begin{titlepage}
+    \pdfbookmark[0]{封面}{title}
+    \includepdf[width=\paperwidth,height=\paperheight]{../img/titlepage.pdf}
+\end{titlepage}
+
+\pdfbookmark[0]{目录}{contents}
+\tableofcontents
+
+\mainmatter
+
+\include{structure_mechanics_influence_line}
+
+\include{structure_mechanics_force_method}
+
+\backmatter
+
+\include{formula}
+
+\include{structure_mechanics_index}
+
+\end{document}

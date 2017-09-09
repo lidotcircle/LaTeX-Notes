@@ -1,0 +1,40 @@
+\input{preamble}
+
+\makeindex
+
+\definecolor{titlef}{rgb}{0.2, 0.8, 0.4}
+\definecolor{titles}{rgb}{0.2, 0.7, 0.9}
+
+\begin{document}
+
+\frontmatter
+
+\begin{titlepage}
+    \pdfbookmark[0]{封面}{titlepage}
+    \includepdf[width=\paperwidth, height=\paperheight]{../img/titlepage.pdf}
+\end{titlepage}
+
+\pdfbookmark[0]{目录}{contents}
+\tableofcontents
+
+\mainmatter
+
+\include{material_mechanics_chapter1_pullShear}
+
+\include{material_mechanics_chapter2_reverse}
+
+\include{material_mechanics_chapter3_bending}
+
+\include{material_mechanics_chapter4_strainAnalysis}
+
+\include{material_mechanics_chapter5_combinedDeformation}
+
+\include{material_mechanics_chapter6_stabilizer}
+
+\backmatter
+
+\include{formula}
+
+\include{material_mechanics_index}
+
+\end{document}

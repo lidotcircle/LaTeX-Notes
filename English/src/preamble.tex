@@ -1,0 +1,34 @@
+\documentclass[oneside]{book}
+
+\input{\string~/texrc.tex}
+
+% geometry settings
+\geometry{a4paper, tmargin=2cm, bmargin=2cm, lmargin=2.5cm, rmargin=1.5cm}
+
+%{{{ define some color
+% color for example itemize
+\definecolor{example}{rgb}{0.2, 0.7, 0.5}
+
+% color for important vocublary
+\definecolor{word}{rgb}{0.8, 0.4, 0.3}
+
+% color for chinese word in vocabulary
+\definecolor{chineseword}{rgb}{0.1, 0.2, 0.8}
+
+% color for word definition
+\definecolor{worddef}{rgb}{0.2, 0.8, 0.8}
+%}}} end color
+
+% some macro
+\def\vocdef{\indent\color{worddef}\tt}
+\def\vocexm{\indent\color{example}\it}
+\def\example{\color{example}}
+\def\vocchineseword{\hskip2em\color{chineseword}\small}
+\def\vocword{\noindent\color{word}\large}
+
+\makeatletter
+% macro for e.g. and noun etc. in resite vocaburary
+\def\bb{\@ifnextchar[\@bb{\@bb[noun]}}
+\def\@bb[#1]{{\noindent\it #1}:\newline}
+
+\makeatother

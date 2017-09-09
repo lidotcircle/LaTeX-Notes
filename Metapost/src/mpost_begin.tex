@@ -1,0 +1,159 @@
+\chapter{开始使用}
+
+%{{{ sec:基本格式
+\section{基本的格式}
+
+\subsection{\mpost 示例}
+
+\begin{mpostcode}[code:exmple]
+beginfig(1);
+u=1cm;
+draw origin -- (u, u);
+endfig;
+
+end
+\end{mpostcode}
+
+\keyword{\lstinline$beginfig(1)$}用于开始一个新的图形, 其中的“1”称为\constant{charcode}, 图形以\keyword{\lstinline$endfig$}结束。\index{Cons-charcode}%
+\constant{origin}表示原点{\bf(0, 0)}。使用{\bf mpost}编译以上代码将生成%
+以源文件名(\constant{jobname})为前缀\constant{charcode}后缀的\emph{eps}文件。
+\index{Cons-jobname}
+
+\subsection{三个内置变量}
+
+\begin{table}{H}
+    \centering
+    \begin{tabular}{l | l}
+        \hline
+        {\bf\large prologues} & 用于决定编译器选择PostScript字体, [0, 3]\cr
+        \hline
+        {\bf\large outputtemplate} & 输出文件的模板\cr
+        \hline
+        {\bf\large outputformat} & 输出文件的格式\cr
+        \hline
+    \end{tabular}
+    \caption{三个内置变量}
+    \label{tab:outputinternal}
+\end{table}
+
+\subsubsection{outputtemplate}
+
+输出文件的模板, 为字符串内置变量。模板包含转义字符{\bf \%\{charcode\}}:\newline
+\begin{table}{H}
+    \centering
+    \begin{tabular}{c | l}
+        \hline
+        {\bf\large \%j} & jobname\cr
+        \hline
+        {\bf\large \%c} & beginfig的计数\cr
+        \hline
+        {\bf\large \%\%} & \%字符\cr
+        \hline
+        {\bf\large \%\{y | m | d | H | M\}} & 一次表示年, 月, 日, 小时,分钟\cr
+        \hline
+    \end{tabular}
+    \caption{转义字符}
+    \label{tab:escapechar}
+    \index{转义字符}
+\end{table}
+
+\subsubsection{outputformat}
+
+字符串内置变量，输出文件的格式，默认为{\bf eps}, 可选为{\bf eps, svg, png}。
+
+\subsubsection{\mpost 文件输出示例}
+
+\begin{mpostcode}[code:example2]
+outputformat:="eps";
+outputtemplate:="%j-%c.eps";
+prologues:=3;
+
+beginfig(1);
+u=1cm;
+draw origin -- (u, u);
+endfig;
+
+end
+\end{mpostcode}
+
+编译文件输出{\bf \{jobname\}-1.eps}。
+%}}} end sec:基本格式
+
+%{{{ sec:赋值和推断
+\section{赋值和推断}
+
+\subsection{赋值}
+
+\mpost 中的赋值符号是{\bf :=}，如给内置变量赋值需要使用\expression{\lstinline$<internalVar>:=<value>$}的形式。{\bf :=}的%
+右边只能是确定的值，左边是一个变量。
+
+\subsection{推断}
+
+\mpost 中支持线性表达式值的推断，线性表达式的中使用{\bf =}，{\bf =}的左右可以互换。例:
+
+\begin{mpostcode}[code:xianxing]
+outputformat:="eps";
+outputtemplate:="%j-%c.eps";
+prologues:=3;
+
+beginfig(1);
+    u = 2cm;
+    z1 = (x2 + 2u, y3);
+    z2 + z3 = (u, 2u);
+    z3 - z2 = (0.5u, u);
+    draw z1 -- z2 -- z3 --cycle;
+endfig;
+
+end
+\end{mpostcode}
+
+无名变量线性推断{\color{red}whatever}
+\begin{mpostcode}[code:whatever]
+outputformat:="eps";
+outputtemplate:="%j-%c.eps";
+prologues:=3;
+
+beginfig(1);
+    u = 2cm;
+    z1 = whatever[origin, (2u, 3u)];
+    z1 = whatever[(0, 2u), (2u, 0)];
+    draw origin -- z1;
+endfig;
+
+end
+\end{mpostcode}
+
+将{\color{red} whatever}改为其他的变量一样可以。
+
+\section{单位}
+
+\begin{table}[H]
+    \centering
+    \begin{tabular}{ c | l}
+        \hline
+        单位 & Explanation\cr
+        \hline
+        bp & One PostScript point in bp units\cr
+        \hline
+        cc & One cicero in bp units [12.79213]\cr
+        \hline
+        cm & One centimeter in bp units [28.34645]\cr
+        \hline
+        dd & One didot point in bp units [1.06601]\cr
+        \hline
+        in & One inch in bp units[72]\cr
+        \hline
+        mm & One millimeter in bp units [2.83464]\cr
+        \hline
+        pc & One pica in bp units [11.95517]\cr
+        \hline
+        pt & One printer’s point in bp units [0.99626]\cr
+        \hline
+    \end{tabular}
+    \index{单位}
+    \label{tab:units}
+    \caption{单位}
+\end{table}
+
+所有的单位都会换算成\unit{bp}进行运算, 如\expression{show 1cm * 1cm}会在编译终端显示\disnumber{803.52127}
+%}}} end sec:赋值和推断

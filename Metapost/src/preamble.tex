@@ -1,0 +1,41 @@
+\documentclass[oneside]{book}
+
+\input{\string~/texrc.tex}
+
+\makeatletter
+
+% geometry
+\geometry{tmargin=2cm, bmargin=2cm, lmargin=2cm, rmargin=2.5cm}
+
+% MetaPost macro
+\def\mpost{{\bf MetaPost}}
+
+% define some color
+\definecolor{type}{rgb}{0.1, 0.2, 0.9}
+\definecolor{expression}{rgb}{0.3, 0.8, 0.7}
+\definecolor{colorexpr}{rgb}{0.8, 0.7, 0.6}
+\definecolor{colortype}{rgb}{0.4, 0.1, 0.9}
+\definecolor{keyword}{rgb}{0.8, 0.3, 0.5}
+\definecolor{macro}{rgb}{0.2, 0.9, 0.2}
+\definecolor{constant}{rgb}{0.7, 0.1, 0.3}
+\definecolor{unit}{rgb}{0.7, 0.7, 0.9}
+\definecolor{disnumber}{rgb}{0.4, 0.5, 0.9}
+\definecolor{other}{rgb}{0.5, 0.9, 0.9}
+
+% some style
+\def\type#1{{\color{type}\tt #1}}
+\def\expression#1{{\color{expression}\tt #1}}
+\def\colorexpr#1{{\color{colorexpr}\tt #1}}
+\def\colortype#1{{\color{colortype}\tt #1}}
+\def\keyword#1{{\color{keyword}\tt #1}}
+\def\macro#1{{\color{macro}\tt #1}}
+\def\constant#1{{\color{constant}\bf #1}}
+\def\unit#1{{\color{unit}\bf #1}}
+\def\disnumber#1{{\color{disnumber}\sl #1}}
+\def\other#1{{\color{other}\tt #1}}
+
+% for angle
+\def\lag{\left\langle}
+\def\rag{\right\rangle}
+
+\makeatother

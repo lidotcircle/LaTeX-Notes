@@ -1,0 +1,87 @@
+\chapter{Control Folw}
+
+\definecolor{relation}{rgb}{0.3, 0.8, 0.9}
+\def\rel#1{{\color{relation} #1}}
+
+关键字:\quad\keyword{else, elseif, endfor, exitif, fi, for, forever,%
+    forsuffixes, if, step, until, beigngroup, endgroup}
+
+%{{{ sec:condition
+\section{Condition}
+\index{Expr-condition}
+
+\expression{if <bool expression>: $\ldots$ else: $\ldots$ fi}\quad 或者:\newline
+\indent\expression{if <bool expression>: $\ldots$ elseif <bool expression>: $\ldots$ fi}\par
+
+\fbox{\vbox{\moveright\parindent\vbox{\noindent
+$\lag\text{\keyword{if}\ test}\rag\,\rightarrow\,\text{\keyword{if}}\lag\text{bool expression}%
+\rag:\lag\text{balance tokens}\rag\lag\text{alternatives}\rag \text{\keyword{fi}}$\newline
+$\lag\text{alternatives}\rag\,\rightarrow\,\lag\text{empty}\rag$\newline
+\indent$|\text{\keyword{else}}:\lag\text{balance tokens}\rag$\newline
+\indent$|\text{\keyword{elseif}}\lag\text{bool expression}\rag:\lag\text{balance tokens}\rag%
+\lag\text{alternatives}\rag$
+\footnote{Come from $\lag\text{{\bf METAPOST}\ a user's manual}\rag$}
+}}}
+
+\subsection{Bool Expression}
+\label{sec:BoolExpression}
+\index{Bool exression}
+
+\fbox{\vbox{\moveright\parindent\vbox{\noindent
+$\lag\text{bool primary}\rag\,\rightarrow\,\lag\text{bool variable}\rag$\newline
+\indent$|\,\text{\constant{true}}\,|\,\text{\constant{false}}$\newline
+\indent$|\,\left(\lag\text{boolean expression}\rag\right)$\newline
+\indent$|\,\text{\keyword{begingroup}}\>\lag\text{statement list}\rag\lag\text{boolean expression}\rag%
+\>\text{\keyword{endgroup}}$\newline
+\indent$|\,\text{\keyword{known}}\>\lag\text{primary}\rag\,|\,\text{\keyword{unknown}}\lag%
+\text{primary}\rag$\newline
+\indent$|\,\lag\text{type}\rag\lag\text{primary}\rag\,|\,\text{\keyword{cycle}}\lag\text{primary}%
+\rag$\newline
+\indent$|\,\text{\keyword{odd}}\>\lag\text{numeric primary}\rag$\newline
+\indent$|\,\text{\keyword{not}}\>\lag\text{boolean primary}\rag$\newline
+$\lag\text{boolean secondary}\rag\,\rightarrow\,\lag\text{boolean primary}\rag$\newline
+\indent$|\,\lag\text{boolean secondary}\rag\>\text{\keyword{and}}\>\lag\text{boolean primary}\rag$\newline
+$|\lag\text{boolean tertiary}\rag\,\rightarrow\,\lag\text{boolean secondary}\rag$\newline
+\indent$|\,\lag\text{boolean tertiary}\rag\>\text{\keyword{or}}\>\lag\text{boolean secondary}\rag$\newline
+$\lag\text{boolean expression}\rag\,\rightarrow\,\lag\text{boolean tertiary}\rag$\newline
+\indent$|\,\lag\text{numeric expression}\rag\lag\text{relation}\rag\lag\text{numeric tertiary}\rag$\newline
+\indent$|\,\lag\text{pair expression}\rag\lag\text{relation}\rag\lag\text{pair tertiary}\rag$\newline
+\indent$|\,\lag\text{transform expression}\rag\lag\text{relation}\rag\lag\text{transform tertiary}\rag$\newline
+\indent$|\,\lag\text{boolean expression}\rag\lag\text{relation}\rag\lag\text{boolean tertiary}\rag$\newline
+\indent$|\,\lag\text{string expression}\rag\lag\text{relation}\rag\lag\text{string tertiary}\rag$\newline
+$\lag\text{relation}\rag\,\rightarrow\,\rel{<} | \rel{<=} | \rel{>} | \rel{>=} | \rel{=} | \rel{<>}$\par
+}}}
+%}}} end sec:condition
+
+%{{{ sec:Loop
+\section{Loop}
+\index{Expr-Loop}
+
+\begin{quote}
+$\text{\keyword{for}}\,\lag\text{symbolic tokens}\rag=\lag\text{numeric expression}\rag%
+\,\text{\keyword{step}}\,\lag\text{numeric}\rag\,\text{\keyword{until}}\,\lag\text{numeric}\rag:%
+\,\text{loop text}\,\text{\keyword{endfor}}$
+
+$\text{\keyword{for}}\,\lag\text{symbolic tokens}\rag=\lag\text{expression}\rag\,\text{\keyword{upto | downto}}:%
+\lag\text{expression}\rag:\,\lag\text{loop text}\rag\,\text{\keyword{endfor}}$
+
+$\text{\keyword{forsuffixes}}\,\lag\text{symbolic tokens}\rag=\text{suffix list}:\,\lag\text{loop text}\rag\,%
+\text{\keyword{endfor}}$
+
+$\text{\keyword{for}}\,\lag\text{symbolic tokens}\rag=\lag\text{picture expression}\rag:\,\lag\text{%
+loop text}\rag\,\text{\keyword{endfor}}$
+
+$\text{\keyword{forever}}:\lag\text{loop text}\rag\,\text{\keyword{endfor}}$
+\end{quote}
+
+\keyword{downto}和\keyword{upto}是{\bf Macro}:\newline
+\indent\expression{def downto = step -1 until enddef}\newline
+\indent\expression{def upto = step 1 until enddef}\par
+
+\keyword{forever}:\quad\expression{\lstinline{def forever = for true enddef;}}\par
+%}}} end sec:loop
+
+%{{{ sec:group
+\section{group}
+\index{Expr-group}
+%}}} end sec:group

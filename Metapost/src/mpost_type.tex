@@ -1,0 +1,193 @@
+\chapter{Type}
+\index{Type}
+
+变量类型\type{boolean，numeric，pair，path，pen，picture，string，transform}
+,还有颜色类型\colortype{rgbcolor，cmykcolor，color}
+
+%{{{ sec:声明
+\section{声明}
+
+使用\expression{<type> <var>;}的形式声明变量\expression{<var>}。\par
+
+如\expression{\lstinline$pair m;$}，\expression{\lstinline$numeric a;$}，%
+\expression{\lstinline$string name;$}。
+
+\subsection{newinternal}
+
+使用{\color{blue}\bf newinternal}关键字可以声明新的内置变量，内置变量只可以%
+使用{\bf ":="}改变值。
+%}}} end sec:声明
+
+%{{{ sec:数组
+\section{数组}
+\index{Type-array}
+
+\mpost 的数组不声明长度，
+声明形如\lstinline$pair pp[];$声明{\bf pp}数组，可以以{\bf pp1，pp2，pp3}%
+或者{\bf pp[i]}的形式的调用。
+还可以\lstinline$pair p[]p[];$形式的声明，以{\bf p1p1，p1p[i]，p.1p.1，p[1]p[1] $\dots$}的形式调用。
+%}}} end sec:数组
+
+%{{{ sec:boolean
+\section{boolean}
+\index{Type-boolean}
+
+\type{boolean}有两个值\constant{true，false}，\type{boolean}类型的值由\other{boolean expression}表示。\par
+\other{boolean expression}参见\ref{sec:BoolExpression}。
+%}}} end sec:boolean
+
+%{{{ sec:numeric
+\section{numeric}
+\index{Type-numeric}
+\label{type:numeric}
+
+%}}} end sec:numeric
+
+%{{{ sec:pair
+\section{pair}
+\index{Type-pair}
+\label{sec:pair}
+
+%}}} end sec:pair
+
+%{{{ sec:path
+\section{path}
+\index{Type-path}
+\label{sec:path}
+
+%}}}
+
+%{{{ sec:pen
+\section{pen}
+\index{Type-pen}
+\label{sec:pen}
+
+%}}} end sec:pen
+
+%{{{ sec:picture
+\section{picture}
+
+\subsection{thelabel}
+\index{Macro-thelabel}
+
+使用\macro{thelabel}可以返回一个\type{picture}。如\expression{pp = thelabel.bot(%
+"Hello world!"，origin)}返回\constant{pp}，使用\expression{show pp}可以将其打印出来。
+
+\macro{thelabel}的形式:\newline
+\indent \expression{thelabel.<suffix>(string | picture，point)}\par
+
+\noindent\lstinline$<suffix>$:\quad{\bf top，bot，lft，rt，ulft，llft，urt，lrt}
+
+与\macro{thelabel}相关的两个宏\macro{label}、\macro{dotlabel}都直接将\type{picture}打印出来。
+
+\subsubsection{thelabel示例}
+
+\begin{mpostcode}[code:thelabel]
+outputformat:="eps";
+outputtemplate:="%j.eps";
+prologues:=3;
+
+beginfig(1);
+    string name;
+    name := "MyName";
+    picture texeq;
+    texeq = btex $f(x) = x^2$ etex;
+
+    picture bottest;
+    picture toptest;
+    picture lfttest;
+    lfttest := thelabel.lft(name, origin);
+    bottest := thelabel.bot(btex $f(x) = {\sqrt{x}}^3$ etex, origin);
+    toptest := thelabel.top(texeq, origin);
+
+    draw lfttest;
+    draw bottest;
+    draw toptest;
+endfig;
+
+end
+\end{mpostcode}
+
+\begin{figure}[H]
+    \caption{结果图}
+    \label{fig:thelabel}
+    \centering
+    \fbox{\includegraphics{../img/thelabel.eps}}
+\end{figure}
+%}}} end sec:picture
+
+%{{{ sec:string
+\section{string}
+\index{Type-string}
+\label{sec:string}
+
+%}}} end sec:string
+
+%{{{ sec:transform
+\section{transform}
+\index{Type-transform}
+\label{sec:transform}
+
+%}}}
+
+%{{{ sec:color
+\section{color}
+\index{Type-color}
+\label{sec:color}
+
+\noindent\colortype{color}用于在执行绘图命令时使用\keyword{withcolor}进行改变颜色。\newline
+\keyword{withcolor}接受\colortype{rgbcolor}时{\bf map to}\keyword{withrgbcolor}\newline
+\keyword{withcolor}接受\colortype{cmykcolor}时{\bf map to}\keyword{withcmykcolor}\newline
+\keyword{withcolor}接受\type{numberic}时{\bf map to}\keyword{withgreyscale}\newline
+\keyword{withcolor}接受\constant{true}时{\bf map to}\other{current default color}\newline
+\keyword{withcolor}接受\constant{false}时{\bf map to}\keyword{withoutcolor}\newline
+
+\subsection{rgbcolor}
+\index{Type-rgbcolor}
+\label{subsec:rgbcolor}
+
+\begin{mpostcode}[code:rgbcolorex]
+    rgbcolor testrgb;
+    testrgb:= 0.5red + 0.2green + 0.1blue;
+    numeric colorpart[];
+    colorpart1:=redpart testrgb;
+    colorpart2:=greenpart testrgb;
+    colorpart3:=bluepart testrgb;
+
+    for i:=1 upto 3: show colorpart[i]; endfor;
+\end{mpostcode}
+
+\keyword{redpart},\keyword{greenpart}，\keyword{bluepart}分别用于取得\colortype{rgbcolor}的 (r，g，b)。
+\colortype{rgbcolor}的表达式:\newline
+\expression{\lstinline$<rgbcolor>c := <numeric>*red + <numeric>*green + <numeric>*blue;$}%
+或者\expression{\lstinline$<rgbcolor>c := (<numeric>, <numeric>, <numeric>)$}。
+\index{Macro-redpart}\index{Macro-greenpart}\index{Macro-bluepart}
+
+\subsection{cmykcolor}
+\index{Type-cmdkcolor}
+\label{subsec:cmykcolor}
+
+\other{cmyk = cyan，magenta，yellow，black}\par
+
+与\colortype{rgbcolor}类似的，也有\keyword{cyanpart}，\keyword{magentapart}，\keyword{yellowpart},%
+\keyword{blackpart}，表达式不能使用颜色相加的形式。\par
+\begin{mpostcode}[code:cmyktest]
+cmykcolor testcmyk;
+    testcmyk:= (0.1, 0.2, 0.3, 0.4);
+    numeric colorpart[];
+    colorpart1:=cyanpart testcmyk;
+    colorpart2:=magentapart testcmyk;
+    colorpart3:=yellowpart testcmyk;
+    colorpart4:=blackpart testcmyk;
+
+    for i:=1 upto 4: show colorpart[i]; endfor;
+\end{mpostcode}
+
+\subsection{grey}
+\label{subsec:grey}
+
+\other{grey}使用\type{numeric}类型表示，范围{\bf [0，1]}，从黑到白。
+可以使用\macro{greypart}得到\other{grey}颜色的灰度。
+\index{Macro-greypart}
+
+%}}} end sec:color

@@ -1,0 +1,71 @@
+\chapter{Formula}
+
+%{{{ 力法
+\section{力法}
+
+将超静定结构($n$次超静定)中的多余约束分别由$\displaystyle\linevec{X}$代替,%
+再由$\displaystyle\linevec{\Delta} = {\bf 0}$%
+得到力法方程($n$元方程)。力法方程的求解即需要先求得除了%
+$\displaystyle\linevec{X}$外的方程系数。
+
+\noindent$\dagger$\quad{\bf 约束力$X_i$和位移$\Delta_i$方向都是确定的, 可以由结构%
+获得。}
+
+\subsection{力法方程}
+
+\begin{equation}
+\label{eq:lffc}
+\relmat{\delta}\cdot\colvec{X} + \colvec{\Delta} = \colvec{\bf 0}
+\end{equation}
+
+\fbox{\vbox{
+式(\ref{eq:lffc})中的$\displaystyle\linevec{X}$为超静定结构%
+待求的未知约束力。$\displaystyle\linevec{\Delta}$为待求力对应的位移。
+}}
+
+\subsection{解力法方程}
+
+\def\tempee#1{({\bf 0},\ldots, {\bf e}_{#1}, \ldots, {\bf 0})}
+设$\linevec{e} = ({\bf 1}, {\bf 1}, \dots, {\bf 1})$, $e_i$的方向和$X_i$方向一致。并设%
+${\bf L}_i = \tempee{i}$, 以${\bar N}_i, {\bar M}_i, {\bar T}_i, {\bar Q}_i$分别表示%
+单独施加${\bf L}_i$时造成的轴力, 弯矩, 扭矩, 剪力。\par
+
+将结构卸除多余约束转为静定结构后, 单独施加${\bf L}_i$, 再将${\bf L}_j$造成的位移作为%
+虚位移施加给结构, 则:\marginnote{\fbox{\vbox{式(\ref{eq:axglf})为${\bf L}_i$所做的虚功,
+式(\ref{eq:bxglf})为做虚位移后的内虚功}}}
+\begin{subequations}
+\begin{align}
+W^\star &= \tempee{i}\cdot\colvec{\Delta^\star}\label{eq:axglf}\cr
+        &= \tempee{i}\cdot\left(\relmat{\delta}\cdot{\tempee{j}^T}\right)\cr
+        &= \delta_{ij}\\
+U^\star &= \int_l\,{\bar N}_i(x)\,d{\Delta L}^\star +%
+\int_l\,{\bar M}_i(x)\,d{\theta^\star} + \int_l\,{\bar Q}_i(x)\,d{\gamma^\star} +%
+\int_l\,{\bar T}_i(x)\,d{\phi^\star}\label{eq:bxglf}\cr
+\end{align}
+\end{subequations}
+
+结合(\ref{eq:axglf})和(\ref{eq:bxglf}), 并由莫尔积分可得:
+\begin{equation}
+    \label{eq:deltaij}
+    \delta_{ij} = \int_l\,{{\bar N}_i(x)\cdot{\bar N}_j(x)\over EA}\,dx +%
+    \int_l\,{{\bar M}_i(x)\cdot{\bar M}_j(x)\over EI}\,dx +%
+    \int_l\,{{\bar Q}_i(x)\cdot{\bar Q}_j(x)\over GA}\,dx +%
+    \int_l\,{{\bar T}_i(x)\cdot{\bar T}_j(x)\over GI_p}\,dx
+\end{equation}
+
+相似的可以得到$\Delta_i$的值:
+\begin{equation}
+    \label{eq:Deltai}
+    \Delta_{i} = \int_l\,{{\bar N}_i(x)\cdot{N}(x)\over EA}\,dx +%
+    \int_l\,{{\bar M}_i(x)\cdot{M}(x)\over EI}\,dx +%
+    \int_l\,{{\bar Q}_i(x)\cdot{Q}(x)\over GA}\,dx +%
+    \int_l\,{{\bar T}_i(x)\cdot{T}(x)\over GI_p}\,dx
+\end{equation}
+
+在所求结构{\imp 以弯曲为主}时:
+\begin{align}
+    \delta_{ij} &= \int_l\,{{\bar M}_i(x)\cdot{\bar M}_j(x)\over EI}\,dx\\
+    \Delta_{i} &= \int_l\,{{\bar M}_i(x)\cdot{M}(x)\over EI}\,dx
+\end{align}
+
+%}}} end 力法
