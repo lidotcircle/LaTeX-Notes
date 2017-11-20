@@ -1,8 +1,0 @@
-# ignore the tex temp file
-*.toc
-*.idx
-*.ind
-*.log
-*.pdf
-*.aux
-*.ilg

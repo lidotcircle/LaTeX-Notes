@@ -1,0 +1,128 @@
+\chapter{误差分析}
+
+\section{误差的来源}
+
+\fbox{\vtop{
+\begin{enumerate}
+\item{模型误差}\hfill\break
+\indent 数学模型从实际问题经抽象和简化, 并忽略一些次要因素得到的.
+\item{参数误差}\hfill\break
+\indent 给出的数学模型中往往包含一些根据观测得到的物理量.
+\item{截断误差}\hfill\break
+\indent 计算中存在只有经过无限过程才能得到的结果, 但实际计算时, 只能用有限的过程来计算.
+\item{舍入误差}\hfill\break
+\indent 计算中遇到的数据可能位数很多, 也有可能时无穷小数, 但是计算时只能对有限位数进行计算.
+\end{enumerate}
+}}
+
+%{{{ section: 误差
+\section{误差}
+% 定义
+\newtheorem{absolute_error}{\defn}[section]
+\newtheorem{error_limit}[absolute_error]{\defn}
+\newtheorem{relative_error}[absolute_error]{\defn}
+\newtheorem{relative_error_limit}[absolute_error]{\defn}
+\newtheorem{significant_digits}[absolute_error]{\defn}
+% 定理
+\newtheorem{relative_error_limit_with_numbers_of_significant_digits}{\theo}[section]
+
+\subsection{绝对误差与相对误差}
+
+%绝对误差
+\begin{absolute_error}
+    \index{绝对误差}\label{definition:absolute_error}
+    设$x$是准确值, $\astx$是它的一个近似值, 则称$x-\astx$为$\astx$的{\bf 绝对误差}, 简称{\bf 误差}, 记作$e^\ast$, 即$e^\ast = x - \astx$.
+\end{absolute_error}
+
+\medskip
+
+%误差限
+\begin{error_limit}
+    \index{误差限}
+    \label{definition:error_limit}
+    设$x$是准确值, $\astx$是它的一个近似值, 称$\astx$的绝对误差的绝对值的上限$\varepsilon^\ast$%
+    为$\astx$的{\bf 绝对误差限}, 简称{\bf 误差限}, 即$|e^\ast| = |x-\astx|\le\varepsilon^\ast$.
+\end{error_limit}
+
+\bigskip
+
+%相对误差
+\begin{relative_error}
+    \index{相对误差}
+    \label{definition:relative_error}
+    设$x$为准确值, $\astx$是它的一个近似值, 称壁纸$e^\ast\over\astx$为近似值$\astx$%
+    的{\bf 相对误差}, 记作$e^\ast_r$, 即$e^\ast_r = {e^\ast\over\astx}={x-\astx\over\astx}$.
+\end{relative_error}
+
+\medskip
+
+%相对误差限
+\begin{relative_error_limit}
+    \index{相对误差限}\label{definition:relative_error_limit}
+    设$x$为准确值, $\astx$是它的一个近似值, 称$\astx$的相对误差$e^\ast_r$的绝对值上界%
+    $\varepsilon^\ast_r$为$\astx$的相对误差限, 即$|e^\ast_r|\le\varepsilon^\ast_r$.
+\end{relative_error_limit}
+
+\medskip
+
+设有$\astx$和$y^\ast$是$x$和$y$的近似值, $\varepsilon^\ast(x)$和%
+$\varepsilon^\ast(y)$分别为相应的绝对误差限, $x$与$y$的四则运算$x\pm y$, $x\cdot y$和$x/y$的绝对误差限为\hfill\break
+\begin{subequations}
+    \label{equation:error_limit_arithmetic}
+    \index{误差限的四则运算}
+    \begin{align}
+        \varepsilon^\ast(x\pm y) &= \varepsilon^\ast(x) + \varepsilon^\ast(y)\\
+        \varepsilon^\ast(x\cdot y) &= |\astx|\varepsilon^\ast(y) + |y^\ast|\varepsilon^\ast(x)\\
+        \varepsilon^\ast(x/y) &= {|\astx|\varepsilon^\ast(y) + |y^\ast|\varepsilon^\ast(x)\over|y^\ast|^2}
+    \end{align}
+\end{subequations}
+
+对于自变量存在误差时, 函数计算值也有误差. 有$f(x)$的Taylor展开式
+\begin{equation*}
+    f(x) = \sum_{n=0}^{\infty}{f^{(n)}(\astx)\over n!}(x-\astx)^n
+\end{equation*}
+可以得到
+\begin{equation*}
+    \index{函数值的误差限}
+    \varepsilon^\ast(y)=\varepsilon^\ast(f(x))\approx|f^\prime(\astx)|\varepsilon^\ast(x)
+\end{equation*}
+
+\bigskip
+
+%有效数字
+\begin{significant_digits}
+    \index{有效数字}
+    \label{definition:significant_digits}
+    设$x$为准确值, $\astx$是它的一个近似值, 若将$\astx$表示成
+    \begin{equation}
+        \label{equation:expression_of_decimal_digit}
+        \astx = \pm0.\alpha_1\alpha_2\cdots\alpha_n\times10^m
+    \end{equation}
+    其中$m, n$为整数, $\alpha_1,\alpha_2,\cdots,\alpha_n$为$0~9$之间的数, %
+    且$\alpha_1\ne0$, 并且满足关系式
+    \begin{equation*}
+        |x-\astx|\le{1\over2}\times10^{m-n}
+    \end{equation*}
+    则称$\astx$具有$n$位{\bf 有效数字}.
+\end{significant_digits}
+
+\medskip
+
+%据对误差限和有效数字的关系
+\begin{relative_error_limit_with_numbers_of_significant_digits}
+    \index{相对误差限与有效数字}
+    \label{theorem:relative_error_limit_with_numbers_of_significant_digits}
+    设形如\refequa{equation:expression_of_decimal_digit}的近似值$\astx$具有$n$位有效%
+    数字, 则其相对误差限为
+    \begin{equation}
+        |e^\ast_r|\le{1\over2\alpha_1}\times 10^{-(n-1)}
+    \end{equation}
+    其中$\alpha_1$是$\astx$的第一位有效数字. 反之, 若
+    \begin{equation}
+        |e^\ast_r|\le{1\over2(\alpha_1+1)}\times 10^{-(n-1)}
+    \end{equation}
+    则$\astx$至少具有$n$位有效数字.
+\end{relative_error_limit_with_numbers_of_significant_digits}
+
+\subsection{条件数与病态问题}
+%}}} end section: 误差

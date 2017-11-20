@@ -1,0 +1,79 @@
+\chapter{插值方法}
+
+%{{{ section: Lagrange插值
+\section{Lagrange插值}
+%Theorem
+
+%Definition
+
+%Formula
+%Lagrange插值公式
+
+\begin{equation}
+L_n(x)=\sum_{k=0}^n l_k(x)y_k
+\end{equation}
+
+\begin{equation}
+l_0(x) = {{(x-x_1)(x-x_2)\ldots(x-x_{n-1})(x-x_n)}\over{(x_0-x_1)(x_0-x_2)\ldots(x_0-x_{n-1})(x_0-x_n)}}
+\end{equation}
+
+\begin{equation*}
+R_n(x)=f(x) - L_n(x)
+\end{equation*}
+
+\begin{equation}
+R_n(x) = f(x) - L_n(x) = {f^{n+1}(\zeta)\over(n+1)!}(x-x_0)(x-x_1)\cdots(x-x_n)
+\end{equation}
+
+\begin{equation}
+f(x)\equiv L_n(x) = \sum_{k=0}^{n}y_kl_k(x)
+\end{equation}
+
+\begin{equation}
+\sum_{k=0}^nl_k(x) = 1
+\end{equation}
+
+\begin{equation}
+|R_n(x)|\le {M\over(n+1)!}|(x-x_0)(x-x_1)\cdots(x-x_n)|
+\end{equation}
+
+%}}} end section; Lagrange插值
+
+%{{{ section: Newton差值
+\section{Newton插值}
+
+\begin{equation}
+    \begin{aligned}
+        f[x_0,x_1,\cdots,x_n] = &\sum\limits_{k=0}^n\,{f(x_k)\over{\omega^\prime_{n+1}(x_k)}}
+                                &\sum\limits_{k=0}^n\,{f(x_k)\over{\prod\limits_{i\in[0,n]/k}(x_k - x_i)}}
+    \end{aligned}
+\end{equation}
+
+\begin{equation}
+    \begin{aligned}
+        N_n(x) =& f(x_0) + f[x_0, x_1](x_0 - x_1) + f[x_0, x_1, x_2](x-x_0)(x-x_1)
+                &+\cdots+f[x_0,x_1,\cdots,x_n](x-x_0)(x-x_1)\cdots(x-x_{n-1})
+    \end{aligned}
+\end{equation}
+
+\begin{equation}
+    \begin{aligned}
+        R_n(x) &= f(x) - N_n(x) = f(x) - L_n(x) 
+               &= f[x_0,x_1,\cdots,x_{n},x]\prod\limits_{i=0}^n\,(x - x_i)
+               &= {f^{n+1}(\zeta)\over{(n+1)!}}\prod\limits_{i=0}^n\,(x - x_1)
+    \end{aligned}
+\end{equation}
+
+\begin{equation}
+    f[x_0, x_1, \cdots, x_{n-1}, x_n] = {f^(n)(\zeta)\over{n!}}
+\end{equation}
+
+%}}} end sectioN: Newton插值
+
+%{{{ section: Hermite插值
+\section{Hermite插值}
+%}}} end section; Hermite插值
+
+%{{{ section: 三次样条插值
+\section{三次样条插值}
+%}}} end section: 三次样条插值

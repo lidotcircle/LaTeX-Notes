@@ -1,0 +1,123 @@
+\chapter{Inline ASM}
+\def\cst#1{{\color{red}\lstinline|#1|}}
+\def\clb#1{{\color{blue}\lstinline|#1|}}
+\def\inlineasm{{\color{black}\bf Inline ASM}}
+
+\gcc 可以在\clang 中使用\inlineasm 来达到较底层的操作, 在{\bf Linux Kernel}中使用许多的\inlineasm.\par
+\inlineasm 可以分为{\bf Basic Form}和{\bf Extend Form}, 前者看上去比较像\gas 中所使用的汇编语法, %
+后者则是在前者的基础上增加了一些功能。
+
+\begin{codelst}[H]
+\label{lst:formofasm}
+\index{Inline ASM Format}
+\caption{Inline ASM 的基本格式}
+\begin{clangcode}
+__asm__[volatile][goto](ASM Template
+                        [: OutputOperands]
+                        [: InputOperands ]
+                        [: Clobbers      ]
+                        [: GotoLabels    ]);
+\end{clangcode}
+\end{codelst}
+
+%{{{ section: Basic Form
+\section{Basic Form}
+
+在\clang 中使用\inlineasm 需要用到\keyword{\_\_asm\_\_}或者\keyword{asm}关键字, %
+其中\keyword{asm}是\gcc 的拓展(\gcc 和\llvmclang 都支持这两个关键字), %
+推荐优先使用\keyword{\_\_asm\_\_}.\par
+
+\medskip
+
+\begin{codelst}[H]
+\caption{A simple inline asm with Basic Form}
+\label{lst:firstinlineasm}
+\begin{clangcode}
+#include<stdio.h>
+
+int main()
+{
+__asm__ ("push %%rbp\t\n"
+         "mov %%rsp, %%rbp");
+return 0;
+}
+\end{clangcode}
+\end{codelst}
+
+\reflst{lst:firstinlineasm}是一个简单的{\bf Basic Form}的\inlineasm.%
+在{\bf Basic Form}的\inlineasm 中使用 {\bf \lstinline|""|} 包含一个ASM操作, 每个ASM操作使用%
+\lstinline|\t\n|进行结束一个ASM操作。\par
+{\bf Basic Form} \inlineasm 不能进行\clang 中变量的操作, 存在巨大的局限, %
+所以需要{\bf Extend Form} \inlineasm.
+
+%}}} End section: Basic Form
+
+%{{{ section: Extend Form
+\section{Extend Form}
+
+\subsection{Qualifier}
+\keyword{volatile}和\keyword{goto}可以用于\inlineasm 的修饰.
+\keyword{volatile}用于关闭\gcc 对于\inlineasm 的优化, \keyword{goto}(\llvmclang 不支持%
+此关键字)用于在\inlineasm 中跳转%
+到{\bf GotoLabel}。
+
+\begin{codelst}[H]
+\caption{A example of {\bf goto qulifier}}
+\label{lst:empofgoto}
+\begin{clangcode}
+#include<stdio.h>
+
+int main()
+{
+    int tt_count = 0;
+    tt_label:
+    if(tt_count <= 4){
+        tt_count++;
+        printf("This is %d time loop.\n", tt_count);
+        __asm__ goto("jmp %l[tt_label]: : : : tt_label");
+    }
+    return 0;
+}
+\end{clangcode}
+\end{codelst}
+
+\subsection{Operands}
+
+以上部分其实我觉得并不重要, \inlineasm 主要是要理解{\em Operands}, {\em Constraints}和{\em Clobbers}.%
+还有不同编译器(\gcc, \llvmclang)与不同得编译参数所得到结果也会有区别. SO ...\par
+\bigskip
+
+{\bf Operands}包括{\bf Output  Operands}和{\bf Input Operands}, %
+在\inlineasm 中的位置见\reflst{lst:formofasm}. {\bf Operands}的格式为:\newline
+\indent [ {\bf [asmSymbolicName]} ] {\bf Constraints} ({\bf cvariableName})\par
+
+{\bf [asmSymbolicName]}是可选的, 编译器默认会依次按照{\bf Operands}的顺序给分配{\bf 0-9}给%
+这些{\bf Operands}, 即使{\bf Operands}指定了{\bf [asmSymbolicName]}各个{\bf Operands}还是依照%
+{\bf Operands}所在的位置, 只不过指定了{\bf [asmSymbolicName]}的多了一个{\bf refence}。
+
+\begin{codelst}[H]
+\caption{The SymbbolicName of Operands}
+\label{lst:symname}
+\begin{clangcode}
+#include<stdio.h>
+
+int main()
+{
+    int a = 5, b = 10;
+    __asm__("addl %[a], %1" // "addl %0, %1" is same
+            :
+            : [a] "r" (a), "m" (b));
+    printf("b is %d.\n", b);
+    return 0;
+}
+\end{clangcode}
+\end{codelst}
+
+\reflst{lst:symname}中变量\var{a}, \var{b}依次声明为{\bf Input Operands}. 如果没有给\var{a}指定%
+{\bf asmSymbolicName}, 那么{\bf \%0}$\rightarrow$\var{a} {\bf \%1}$\rightarrow$\var{b}. 不过在例子中由于%
+\var{a}指定了{\bf [a]}, 所以在ASM部分可以使用{\bf \%[a]} reference to variable \var{a}.
+
+\subsection{Constraints}
+
+\subsection{Clobbers}
+%}}} End section: Extend Form

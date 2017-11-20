@@ -1,0 +1,19 @@
+\input{\string~/texrc.tex}
+
+\geometry{tmargin=2cm, rmargin=2cm, bmargin=2cm, lmargin=2cm}
+
+\floatstyle{plaintop}
+\newfloat{codelst}{htbpH}{maybe}[chapter]
+\floatname{codelst}{\color{red}Listings}
+
+\def\gcc{{\bf GCC}}
+\def\gas{{\bf GAS}}
+\def\clang{{\tt\ C }}
+\def\llvmclang{{\bf LLVM clang}}
+
+\definecolor{keywordcolor}{rgb}{0.2, 0.2, 0.9}
+\def\keyword#1{{\Large\color{keywordcolor}\tt#1}}
+\definecolor{varcolor}{rgb}{0.5, 0.7, 0.3}
+\def\var#1{{\Large\color{varcolor}\tt#1}}
+
+\def\reflst#1{{({\color{purple}Listings} \ref{#1})}}

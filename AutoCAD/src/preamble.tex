@@ -1,0 +1,21 @@
+\documentclass[oneside]{book}
+
+\input{\string~/texrc.tex}
+\makeatletter
+
+\geometry{tmargin=2cm, rmargin=2cm, bmargin=2cm, lmargin=2cm}
+
+\def\autocad{{\bf AutoCAD}}
+\def\autolisp{{\bf AutoLISP}}
+
+\definecolor{sysvar@color}{rgb}{0.7, 0.5, 0.1}
+\def\sysvar#1{{\color{sysvar@color}\tt#1}}
+
+\definecolor{descsysvar@color}{rgb}{0.9, 0.7, 0.8}
+\def\desc@sysvar{\indent\color{descsysvar@color}\tt}
+
+\definecolor{basictype@color}{rgb}{0.1, 0.2, 0.8}
+\def\btype{\color{basictype@color}\tt}
+
+\drfinecolor{primf@color}{rgb}{0.1, 0.8, 0.2}
+\def\primf#1{{\tt\color{primf}#1}}

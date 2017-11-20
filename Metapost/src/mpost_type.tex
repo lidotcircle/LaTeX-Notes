@@ -55,6 +55,23 @@
 \index{Type-path}
 \label{sec:path}
 
+\subsection{Curve}
+\labe{subsec:Curve}
+
+\mpost 使用{\macro\lstinline$..$}连接点建立路径, 还有{\macro\lstinline$%
+--$}, {\macro\lstinline$...$}, {\macro\lstinline$---$}宏进行建立路i经。%
+后三个建立路径的命令是{\marco\lstinline$..$}的宏。\par
+
+\begin{center}
+\begin{mpostcode}[code:curvemarco]
+def -- = {curl 1}..{curl 1} enddef;
+def --- = .. tension infinity .. enddef;
+def ... = .. tension atleast 1 .. enddef;
+\end{mpostcode}
+\end{center}
+
+以上的命令绘制的曲线都是{\other 三次bezier曲线}
+
 %}}}
 
 %{{{ sec:pen

@@ -1,0 +1,50 @@
+\chapter{Miscellaneous}
+
+\newbox\tabcode
+\setbox\tabcode\hbox to0.5\hsize{\vbox{\begin{center}\color{red}\tt Hello world!\end{center}}}
+
+%{{{ section: system variable
+\section{System variable}
+
+AutoCAD System variable accessed by \primf{getvar} and \primf{setvar}.
+
+\begin{table}[H]
+\label{tab:sysvar}
+\caption{System variable}
+\begin{tabular}{| >{\bgroup\color{sysvar@color}\tt}p{0.15\hsize}<{\egroup} |%
+>{\bgroup\btype}p{0.25\hsize}<{\egroup} |%
+>{\bgroup\desc@sysvar}p{0.5\hsize}<{\egroup} |}
+\hline
+{\bf System Variable} & {\bf Type} & {\bf Short Description}\cr
+\hline
+CLAYER & String & 当前图层(图层名)\cr
+\hline
+LAYOUTTAB & Interge & 布局面板开关. 0 - 关, 1 - 开\cr
+\hline
+LIMCHECK & Interge & 能否创建超出\sysvar{LIMMIN}和\sysvar{LIMMAX}的对象. 0 - 能, 1 - 不能.\cr
+\hline
+LIMMAX & 2D Point & 所有对象的上确界点\cr
+\hline
+LIMMIN & 2D Point & 所有对象的下确界点\cr
+\hline
+LWDISPLAY & OFF | ON & 用于控制是否打开线宽显示\cr
+\hline
+OSMODE & Interge & 控制对象捕捉(Object snap)\cr
+\hline
+PICKADD & Interge(0 | 1 | 2) & 用于控制是否增加选择的对象\cr
+\hline
+TOOLTIPS & Interge & 用来开关鼠标浮动在工具上时是否显示工具的帮助信息\cr
+\hline
+VIEWCTR & 3D Point & 当前窗口的中心点\cr
+\hline
+VIEWDIR & 3D Point | 2D Point & 窗口视图的角度\cr
+\hline
+VIEWSIZE & Interge & 窗口的高度\cr
+\hline
+VSMAX & 2D Point & 当前窗口的上确界点\cr
+\hline
+VSMIN & 2D Point & 当前窗口的下确界点\cr
+\hline
+\end{tabular}
+\end{table}
+%}}} end section: system variable

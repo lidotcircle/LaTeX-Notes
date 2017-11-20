@@ -1,0 +1,22 @@
+\chapter{线性方程组的迭代法}
+
+\section{雅可比迭代法}
+
+\begin{equation}
+    \begin{aligned}
+        x_i &= {1\over a_{ii}}\left(b_i - \sum\limits_{j=0 \newline j\ne i}^n\,a_{ij}x_j\right)\\
+        \text{迭代公式:}
+        x_i^{(k+1)} &= {1\over a_{ii}}\left(b_i - \sum\limits_{j=0\newline j\ne i}^n\,a_{ij}x_j^{(k)}\right)
+    \end{aligned}
+\end{equation}
+
+\begin{equation}
+    \begin{aligned}
+        \bf A = D - L -U \quad\Longrightarrow\quad \bf DX &= b + (L + U)X \quad\Longleftrightarrow\quad \\
+        \bf X &= D^{-1}(L+U)X + D^{-1}b = B_jX+f_j
+    \end{aligned}
+\end{equation}
+
+\begin{equation}
+    \bf X = (D-L)^{-1}UX + (D-L)^{-1}b \quad\Longleftrightarrow\quad X = B_GX + f_G
+\end{equation}

@@ -1,0 +1,66 @@
+\chapter{拉伸、压缩与剪切}
+
+
+\section{直杆拉压时的力与应力}
+
+{\noindent 在直杆的拉压中，同截面处正应力相等。杆间内力为$F_s$，应力为$\sigma$则:}
+\begin{equation}\label{eq:straightBar}
+    {F_s=\sigma\int_{A}\,dA = \sigma A}\quad\Longrightarrow\quad
+    \sigma = {F_s\over A}
+\end{equation}
+
+\section{材料拉伸时的力学性能}
+
+\subsection{低碳钢的拉伸}
+
+{\indent 以低碳钢({\bf 含碳量低于0.3\%的碳素钢})为例。$\varepsilon$与$\sigma$:\quad%
+$\varepsilon={\Delta\over l}$, $\sigma={F\over A}$.\par
+
+\begin{description}
+\item{\bf 弹性阶段} 线弹性阶段, $\sigma\propto\varepsilon$, $\sigma=E\varepsilon$, 线弹性阶段的最大%
+应力值称为比例极限($\sigma_p$)\index{比例极限}。超过比例极限后的$\sigma$与$\varepsilon$不在是线性关系, %
+不过变形仍旧可以恢复。弹性阶段的最大应力值称为弹性极限($\sigma_e$)\index{弹性极限}。
+\item{\bf 屈服阶段} 过了弹性阶段出现应力微小波动而应变显著增加的情况就是进入了屈服阶段。屈服阶段的最大和%
+最小的应力值称为上屈服极限和下屈服极限($\sigma_s$)\index{上屈服极限}\index{下屈服极限}, 下屈服极限%
+有比较稳定的值, 所以把下屈服极限称为屈服极限。\index{屈服极限}(上下屈服极限的值和加载速度, 试样形状有关)
+\item{\bf 强化阶段} 过了屈服阶段后材料又有了抵抗变形的能力, 材料进入强化阶段, 此阶段所能承受的最大应力%
+称为强度极限或者抗拉强度$\sigma_b$\index{强度极限}\index{抗拉强度}。
+\item{\bf 局部变形阶段} 过了强化阶段, 试样在某处突然的收缩, 形成缩颈现象\index{缩颈现象}。
+\end{description}
+
+\subsection{伸长率和断面收缩率}
+
+{\indent\bf 伸长率:}\quad$\delta={l_1-l\over l}$\index{伸长率}\newline
+{\indent\bf 断面收缩率:}\quad$\psi={A-A_1\over A}$\index{断面收缩率}\par
+
+\section{杆件拉压变形}
+
+\begin{subequations}
+\begin{align}
+\Delta l=l_1 - l \quad\Longrightarrow\quad \varepsilon = {\Delta l\over l}\label{eq:bili}\\
+\sigma={F_s\over A}={F\over A}\label{eq:tens}
+\end{align}
+\end{subequations}
+
+{由\ref{eq:bili}和\ref{eq:tens}可以推得:}\newline
+
+\begin{equation}
+\Delta l = {F_s l\over{EA}} = {Fl\over{EA}}
+\end{equation}
+
+杆件变形前横向尺寸为$b$, 变形后为$b_1$, 则横向应变为:\newline
+\begin{subequations}
+\begin{align}
+\varepsilon'={\Delta b\over b}={b_1 - b\over b}\label{eq:subbian}
+\end{align}
+\end{subequations}
+
+当应力不超过比例极限时$|\varepsilon'|\over|\varepsilon|$是个常数:
+
+\begin{equation}
+{|\varepsilon'|\over|\varepsilon|} = \mu
+\end{equation}
+
+$\mu$称为泊松比。\index{泊松比}
+
+\section{拉压时的应变能}

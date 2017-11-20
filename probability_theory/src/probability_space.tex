@@ -1,0 +1,91 @@
+\chapter{概率空间}
+
+%{{{ section:随机事件和随机变量
+\section{随机事件和随机变量}
+% theorem
+\newtheorem*{randomizedtrail}{Definition}
+
+\begin{randomizedtrail}[随机事件]
+{\bf 随机实验}的结果称为{\bf 随机事件}，简称{\bf 事件}
+\index{随机事件}
+\end{randomizedtrail}
+%}}} end section:随机事件和随机变量
+
+%{{{ section:事件的运算
+\section{事件的运算}
+\theoremstyle{definition}
+\newtheorem{monotoneeventcolumn}{Definition}[section]
+
+\indent 以$A$, $B$表示事件。
+
+\begin{enumerate}
+\item{\bf 事件的包含:}\quad 事件$A$发生，则事件$B$发生。\equalwith$A\subset B$
+\item{\bf 事件的和:}\quad 事件$A$或$B$发生。\equalwith$A\cup B$
+\item{\bf 事件的交:}\quad 事件$A$和$B$一起发生。\equalwith$A\cap B$
+\item{\bf 事件的差:}\quad 事件$A$发生$B$不发生。\equalwith$A - B$
+\item{\bf 事件的逆:}\quad 事件$A$不发生。\equalwith${\bar A} = \Omega/A$
+\end{enumerate}
+
+\begin{monotoneeventcolumn}
+    有事件列$(A_{n=1}^{\infty})$，$A_i\subset A_j$\equalwith$i<j$，则称$A_{n=1}^{\infty}$为单调递增; 若%
+    $A_i\supset A_j$\equalwith$i<j$，则$A_{n=1}^{\infty}$为单调递减。%
+    称$\lim\limits_{i\to\infty}A_i$为事件列$A_{n=1}^{\infty}$的极限。%
+    两者统称单调事件列
+    \index{单调事件列}
+\end{monotoneeventcolumn}
+%}}} end section:事件的运算
+
+%{{{ section:基本事件空间
+\section{基本事件空间}
+\newtheorem{basicevent}{Definition}[section]
+\newtheorem{basiceventspace}[basicevent]{Definition}
+
+\begin{basicevent}[基本事件]
+每次实验必出现一个而且只能出现一个基本事件, 任何两个基本事件不能同时发生。
+\index{基本事件}
+\end{basicevent}
+
+\begin{basiceventspace}[基本事件空间]
+以$\omega$表示基本事件，基本事件空间$\Omega = \{\omega\}$。事件是基本事件空间的子集。只含有穷或者可数个基本事件的基本事件空间称为{\bf 离散的}。
+\index{基本事件空间}
+\end{basiceventspace}
+%}}} end section:基本事件空间
+
+%{{{ section:可测空间
+\section{事件$\sigma-$代数$\cdot$可测空间}
+\newtheorem{sigmaalgebra}{Definition}[section]
+\newtheorem{smallestsigmaalgebraset}[sigmaalgebra]{Definition}
+
+\subsection{事件$\sigma-$代数}
+
+$\Omega$是一个集合，$\mathscr{F}$是$\Omega$的一些子集的集合。
+
+\begin{sigmaalgebra}[$\sigma$代数]
+    称$\mathscr{F}$为$\Omega$中的一个$\sigma-$代数:
+    \begin{enumerate}
+        \item $\Omega\in\mathscr{F}$
+        \item $A\in\mathscr{F}$\equalwith${\bar A}\in\mathscr{F}$
+        \item 对$(A_{i=1}^{\infty})$($A_i\in\mathscr{F}$), $\bigcup\limits_{i=i}^{\infty}A_i\,\in\mathscr{F}$
+    \end{enumerate}
+    \index{$\sigma-$代数}
+\end{sigmaalgebra}
+
+\noindent$\sigma-$代数的一些性质
+\begin{itemize}
+    \item$\emptyset\in\mathscr{F}$
+    \item 对于$(A_{i=1}^{n})$，有$\bigcup_{i=1}^nA_{i}\in\mathscr{F}$和$\bigcap_{i=1}^{n}A_i\in\mathscr{F}$
+    \item 对于$(A_{i=1}^{\infty})$，有$\bigcap_{i=1}^{\infty}A_i\in\mathscr{F}$
+\end{itemize}
+
+\subsection{Borel $\sigma-$代数}
+
+\begin{smallestsigmaalgebraset}[给定集系最小$\sigma-$代数]
+    \index{给定集系最小$\sigma-$代数}
+    给定$\Omega$的集系$\mathscr{H}$的最小$\sigma-$代数$\sigma(\mathscr{H})$:
+    \begin{enumerate}
+        \item$\mathscr{H}\in\sigma(\mathscr{H})$
+        \item$\mathscr{B}$是$\Omega$上的$\sigma-$代数，且$\mathscr{H}\subset\mathscr{B}$。%
+            则$\forall\,\mathscr{B}$, 有$\sigma(\mathscr{H})\subset\mathscr{B}$
+    \end{enumerate}
+\end{smallestsigmaalgebraset}
+%}}} end section:可测空间

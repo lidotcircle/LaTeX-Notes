@@ -1,0 +1,313 @@
+\chapter{非线性方程求根}
+% algorithm
+\newtheorem{divide_algorithm}{\algo}[chapter]
+\newtheorem{iterative_algorithm}[divide_algorithm]{\algo}
+\newtheorem{newton_algorithm}[divide_algorithm]{\algo}
+\newtheorem{chord_method_algorithm}[divide_algorithm]{\algo}
+
+%{{{ section: 二分法
+\section{二分法}
+% 定义
+\newtheorem{multi_root}{\defn}[section]
+% 定理
+\newtheorem{multi_root_derivative}{\theo}[section]
+\newtheorem{mean_theorem}[multi_root_derivative]{\theo}
+
+% 根和重根定义
+\begin{multi_root}
+    \label{definition:multi_root}
+    \index{重根的定义}
+    如果$f(x)$可以表示为:
+    \begin{equation}
+        f(x) = (x - x^\ast)^mg(x)
+    \end{equation}
+    则当$(m \ge 1$): 称$x^\ast$为方程的根, $(m > 1)$: 称$x^\ast$为方程的$m$重根。
+\end{multi_root}
+
+\medskip
+
+% 重根与导数的关系定理
+\begin{multi_root_derivative}
+    \label{theorem:multi_root_with_derivative}
+    \index{重根与导数的关系}
+    设函数有$m$阶导数, 且函数满足:$f(\astx)=0$, $f^\prime(\astx)=0$, $\ldots$, $f^{(m-1)}(\astx) = 0$, 
+    则$\astx$为方程$f(x)=0$的$m$重根。
+\end{multi_root_derivative}
+
+\medskip
+
+% 介值定理
+\begin{mean_theorem}
+    \label{theorem:mean_theorem}
+    \index{介值定理}
+    若函数$f(x)$在$[a, b]$连续, 且$f(a)\cdot f(b)<0$, 则$\exists\,\astx\in(a, b)$, 使得$f(\astx)=0$。
+\end{mean_theorem}
+
+\medskip
+
+% 算法 -- 二分法
+\begin{divide_algorithm}[二分法]
+    \index{Algorithm--二分法}
+    \label{algorithm:divide_algorithm}
+    \hfill\break\fbox{\vtop{
+    \begin{enumerate}
+        \item 取初始有根区间$[a,b]$(满足$f(a)\cdot f(b)<0$)和精度要求$\varepsilon$;
+        \item 若${b-a\over2} < \varepsilon$, 则停止计算;
+        \item 取$x= {a+b\over 2}$, 若$f(x) = 0$, 则停止计算;
+        \item 若$f(a)\cdot f(x)<0$, 则$b=x$; 否则$a=x$;
+        \item 转(2).
+    \end{enumerate}
+}}
+\end{divide_algorithm}
+
+\medskip
+
+%}}} end section: 二分法
+
+%{{{ section: 迭代法
+\section{迭代法}
+%定理
+\newtheorem{convergence_of_iterative_formula}{\theo}[section]
+\newtheorem{deviation_of_iterative_formula}[convergence_of_iterative_formula]{\theo}
+\newtheorem{theorem_of_local_convergence}[convergence_of_iterative_formula]{\theo}
+\newtheorem{theorem_of_iterative_convergence_order}[convergence_of_iterative_formula]{\theo}
+%定义
+\newtheorem{iterative_formula}{\defn}[section]
+\newtheorem{local_convergence}[iterative_formula]{\defn}
+\newtheorem{iterative_convergence_order}[iterative_formula]{\defn}
+
+\subsection{迭代公式的收敛}
+
+% 迭代公式
+\begin{iterative_formula}
+    \label{definition:iterative_formula}
+    \index{迭代公式}
+    有函数$\phi(x)$:
+    \begin{equation}
+        x_{k+1} = \phi(x_k)
+    \end{equation}
+    称为函数$\phi(x)$的迭代公式。
+\end{iterative_formula}
+
+\medskip
+
+% 迭代法算法
+\begin{iterative_algorithm}[一般迭代法]
+    \label{algorithm:iterative_algorithm}
+    \index{Algorithm--迭代法}
+    \hfill\break\fbox{\vtop{
+    \begin{enumerate}
+        \item 取初始点$x_0$, 最大迭代数$N$和精度要求$\varepsilon$, 置$k=0$;
+        \item 计算$x_{k+1} = \phi(x_k)$;
+        \item 若$|x_{k+1} - x_k|<\varepsilon$, 则停止计算;
+        \item 若$k = N$, 则停止计算; 否则, 置$k = k+1$, 转(2).
+    \end{enumerate}
+}}
+\end{iterative_algorithm}
+
+\medskip
+
+% 收敛定理
+\begin{convergence_of_iterative_formula}
+    \label{theorem:convergence_of_iterative_formula}
+    \index{迭代公式的收敛定理}
+    函数$\phi(x)$在$[a,b]$上存在连续的一阶导数:
+    \begin{enumerate}
+        \item $\forall x\in[a,b]$, $a\le\phi(x)\le b$
+        \item $\forall x\in[a,b]$, $|\phi^\prime(x)|\le L < 1$
+    \end{enumerate}
+    则:
+    \begin{enumerate}
+        \item 函数$\phi(x)$在$[a,b]$存在唯一的不动点$\astx$
+        \item $\forall x_0\in[a,b]$, 按照\refdefn{definition:iterative_formula}所得的序列均收敛到方程%
+            $\phi(x)=0$的解
+    \end{enumerate}
+\end{convergence_of_iterative_formula}
+
+
+\medskip
+
+% 迭代公式的误差
+\begin{deviation_of_iterative_formula}
+    \index{迭代公式的误差}
+    \label{theorem:deviation_of_iterative_formula}
+    设\reftheo{theorem:convergence_of_iterative_formula}成立, 则
+    \begin{subequations}
+        \begin{align}
+            |x_k - \astx|\le{L^k\over{1-L}}|x_1 - x_0|\\
+            |x_k - \astx|\le{1\over{1-L}}|x_{k+1}-x_k|
+        \end{align}
+    \end{subequations}
+\end{deviation_of_iterative_formula}
+
+\subsection{局部收敛}
+
+% 局部收敛的定义
+\begin{local_convergence}
+    \index{局部收敛}
+    \label{definition:local_convergence}
+    设$\astx$是$\phi(x)$的不动点， 如果存在摸个邻域$N(\astx, \delta)=[\astx-\delta,\astx+\delta]$,%
+    对任意的$x_0\in N(\astx, \delta)$, 由\refdefn{definition:iterative_formula}%
+    中公式产生的序列$\{x_k\}\in N(\astx, \delta)$收敛到$\astx$, 称为{\bf 局部收敛}
+\end{local_convergence}
+
+\medskip
+
+% 局部收敛定理
+\begin{theorem_of_local_convergence}
+    \index{局部收敛定理}
+    \label{theorem:theorem_of_local_convergence}
+    设$\astx$是$\phi(x)=x$的根, $\phi^\prime(x)$在某个邻域连续且有$|\phi^\prime(\astx)|<1$, 则%
+    迭代公式局部收敛。
+\end{theorem_of_local_convergence}
+
+\subsection{迭代收敛的阶}
+
+% 收敛阶
+\begin{iterative_convergence_order}
+    \index{收敛阶}
+    \label{definition:iterative_convergence_order}
+    设$\lim\limits_{k\to \infty} x_k = \astx$, 记$e_k = x_k - \astx$, 如果存在某个实数$p\ge 1$及常数$c\ne0$, 使得:
+    \begin{equation}
+        \lim\limits_{k\to\infty}{|e_{k+1}|\over{|e_k|^p}} = c
+    \end{equation}
+    则称序列$\{x_k\}$是$p$阶收敛的
+\end{iterative_convergence_order}
+
+\medskip
+
+% 迭代有关收敛阶的定理
+\begin{theorem_of_iterative_convergence_order}
+    \index{一般迭代序列的收敛阶定理}
+    \label{theorem:theorem_of_iterative_convergence_order}
+    设迭代函数$\phi(x)$满足:
+    \begin{enumerate}
+        \item $\astx = \phi(\astx)$, 且在$\astx$附近有$p$阶导数
+        \item $\phi^\prime(\astx)=\phi^{\prime\prime}(\astx)=\ldots=\phi^{(p-1)}(\astx)=0$
+        \item $\phi^{(p)}(\astx)\ne 0$
+    \end{enumerate}
+    则函数$\phi(x)$在$\astx$处的迭代序列是$p$阶收敛的, 且
+    \begin{equation}
+        \lim\limits_{k\to\infty}{e_{k+1}\over {e_k^p}} = {\phi^{(p)}(\astx)\over p!}
+    \end{equation}
+\end{theorem_of_iterative_convergence_order}
+
+\subsection{迭代加速}
+
+%}}} end section: 迭代法
+
+%{{{ section: 牛顿法
+\section{牛顿法}
+% 定义
+\newtheorem{newton_method}{\defn}[section]
+%定理
+\newtheorem{the_speed_of_newton_method_convergence}{\theo}[section]
+
+% Newton法
+\begin{newton_method}
+    \index{Newton法}
+    \label{definition:newton_method}
+    有函数$f(x)$, 要求$f(x)=0$的根$\astx$, 设$x_0$为此方程根$\astx$的一个近似根, %
+    将$f(x)$在$x_0$处Taylor展开,
+    \begin{equation}
+        \label{taylorone}
+        f(x) \approx f(x_0) + f^\prime(x_0)(x-x_0)
+    \end{equation}
+    由\refequa{taylorone}, 令其右端为零, 解得可以得到一个$\astx$的一个近似值, 作为第一次近似.\\
+    设当前点为$x_k$, 在$x_k$处Taylor展开.
+    \begin{equation*}
+        f(x)\approx f(x_k) + f^\prime(x_k)(x - x_k)
+    \end{equation*}
+    令右端为零, 解方程可以得到
+    \begin{equation}
+        \label{equation:newton_iteravite}
+        x_{k+1} = x_k - {f(x_k)\over f^\prime(x_k)},\quad\quad k= 0, 1, \ldots
+    \end{equation}
+    \refequa{equation:newton_iteravite}称为Newton迭代公式.
+\end{newton_method}
+
+\medskip
+
+% Newton法算法
+\begin{newton_algorithm}[Newton法]
+    \index{algorithm:Newton法}
+    \label{algorithm:newton_algorithm}
+    \hfill\break\fbox{\vtop{
+    \begin{enumerate}
+        \item 取初始点$x_0$, 最大迭代次数$N$和精度要求$\varepsilon$, 置$k=0$;
+        \item 计算 $x_{k+1} = x_k - {f(x_k)\over{f^\prime(x_k)}}$;
+        \item 若$|x_{k+1} - x_k|<\varepsilon$, 则停止计算;
+        \item 若 $k = N$, 则停止计算; 否则, $k=k+1$, 转(2).
+    \end{enumerate}
+}}
+\end{newton_algorithm}
+
+\medskip
+
+% 收敛速度
+\begin{the_speed_of_newton_method_convergence}
+    设$f(\astx)\ne 0$, $f(x)$二阶连续可微。
+    牛顿迭代法公式$x_{k+1} = x_k - {f(x_k)\over f^\prime(x_k)}$%
+    等价与$\phi(x)=x-{f(x)-f^\prime(x)}$时的一般迭代法公式。
+    \begin{equation}
+        \phi^\prime(x) = 1 - {[f^\prime(x)]^2 - f(x)f^{\prime\prime}(x)%
+        \over{[f^\prime(x)]^2}} = {f(x)f^{\prime\prime}(x)\over{[f^\prime(x)]^2}}
+    \end{equation}
+    由条件$f(\astx)=0$, $f^\prime(\astx)\ne 0$可知$\phi^\prime(\astx) = 0$, %
+    所以由定理\reftheo{theorem:theorem_of_iterative_convergence_order}可知%
+    在$x_0\in N(\astx, \delta)$的情况下, Newton法至少二阶收敛.
+\end{the_speed_of_newton_method_convergence}
+
+\subsection{重根情况}
+
+当$\astx$为$f(x)=0$的$m$($m\ge2$)重根时, 按照Newton法为线性收敛。\par
+
+为了改善重根时的收敛速度, 可以采用以下的方法:
+\begin{enumerate}
+    \item 当根的重数$m\ge2$时, 将迭代函数改为
+        \begin{equation}
+            \phi(x) = x - {m f(x)\over f^\prime(x)}
+        \end{equation}
+        按照此迭代函数, 迭代公式
+        \begin{equation*}
+            x_{k+1} = x_k - {m f(x_k)\over f^\prime(x_k)}
+        \end{equation*}
+        至少是2阶收敛的.
+    \item 令$\mu(x) = {f(x)\over f^\prime(x)}$, $\astx$为$f(x)$的$m$重根, 则
+        \begin{equation*}
+            \mu(x) = {f(x)\over f^\prime(x)} = {(x-\astx)g(x)\over m\relax g(x) + (x-\astx)g^\prime(x)}
+        \end{equation*}
+        所以$\astx$为$\mu(x) = 0$的单根. 迭代函数为
+        \begin{equation*}
+            \phi(x) = x - {\mu(x)\over\mu^\prime(x)} = x - {f(x)f^\prime(x)\over%
+            {\left[f^\prime(x)\right]^2 - f(x)f^{\prime\prime}(x)}}
+        \end{equation*}
+        由于$\mu^\prime(\astx)\ne0$且由\reftheo{theorem:theorem_of_iterative_convergence_order}%
+        可以知道迭代公式
+        \begin{equation}
+            x_{k+1} = x_k - {f(x_k)f^\prime(x_k)\over{\left[f^\prime(x_k)\right]^2-%
+            f(x_k)f^{\prime\prime}(x_k)}}
+        \end{equation}
+        至少是2阶收敛的.
+\end{enumerate}
+
+\subsection{下山法}
+        
+%}}} end section: 牛顿法
+
+%{{{ section: 弦截法
+\section{弦截法}
+
+\begin{chord_method_algorithm}[弦截法]
+    \index{Algorithm--弦截法}
+    \label{algorithm:chord_method_algorithm}
+    \hfill\break\fbox{\vtop{
+            \begin{enumerate}
+                \item 取初始点$x_0$和$x_1$, 最大迭代次数$N$和精度要求$\varepsilon$, 置$k = 1$;
+                \item ji算$x_{k+1} = x_k - {f(x_k)\over f(x_k) - f(x_{k-1})}\left(x_k - x_{k-1}\right)$;
+                \item 若$|x_{k+1} - x_k| < \varepsilon$, 则停止计算;
+                \item 若$ k =N $, 则停止计算; 否则$k = k+1$, 转(2).
+            \end{enumerate}
+    }}
+\end{chord_method_algorithm}
+%}}} end section: 弦截法

@@ -1,0 +1,38 @@
+\chapter{Draft}
+
+this file just for draft some formula or theorem to convinent after writing.
+
+\section{formula}
+
+% 泰勒展开式的证明辅助函数, Taylor展开式余项的证明
+\begin{equation}
+\phi(t) = R(t) - {R(x)\over{\left(x-x_0\right)^{n+1}}}\left(t - x_0\right)^{n+1}
+\end{equation}
+
+% n次插值多项式的误差
+\begin{equation}
+\phi(t) = R(t) - {R(x)\over{\prod_{i=0}^n\left(x - x_i\right)}}\prod_{i=0}^n\left(t - x_i\right)
+\end{equation}
+
+% Newton插值公式
+\begin{equation}
+\begin{aligned}
+N_n(x) = & f(x_0) + f\left[x_0, x_1\right]\left(x - x_0\right) + f\left[x_0, x_1, x_2\right] + \cdots + \cr
+& f\left[x_0, x_1, \cdots, x_n\right]\left(x - x_0\right)\left(x - x_1\right)\cdots\left(x - x_{n-1}\right)
+\end{aligned}
+\end{equation}
+
+% Lagerange插值公式
+\begin{subequations}
+\begin{align}
+L_n\left(x\right) = \sum_{i=0}^n f\left(x_i\right)l_i\left(x\right)\\
+l_i\left(x\right) = {\prod\limits_{k\in[0,n], k\ne i}\left(x - x_k\right)%
+\over\prod\limits_{k\in[0,n], k\ne i}\left(x_i - x_k\right)}
+\end{align}
+\end{subequations}
+
+% n次插值公式的余项
+\begin{equation}
+R_n\left(x\right) = f\left(x\right) - L_n\left(x\right) = %
+{f^{(n+1)}(\zeta)\over(n+1)!}\prod_{i=0}^n(x - x_i)
+\end{equation}

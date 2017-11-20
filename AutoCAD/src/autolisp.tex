@@ -1,0 +1,98 @@
+\chapter{AutoLisp}
+
+%{{{ section: Type
+\section{Type}
+
+在\autolisp 中可以使用\lstinline|(type <something>)|来检测对象的类型.
+
+\begin{table}[H]
+\caption{Type List\footnote{From autodesk offical site}}
+\begin{center}
+\begin{tabular}{| >{\bgroup\btype p{0.2\hsize}}<{\egroup} |%
+>{\bgroup\bf p{\0.6\hsize}}<{\egroup} |}
+\hline
+ENAME & Entity names\cr\hline
+EXRXSUBR & External ObjectARX applications\cr\hline
+FILE & File descriptors\cr\hline
+INT & Integers\cr\hline
+LIST & Lists\cr\hline
+PAGETB & Function paging table\cr\hline
+REAL & Floating-point numbers\cr\hline
+SAFEARRAY & Safearry\cr\hline
+STR & Strings\cr\hline
+SUBR & Internal AutoLISP funcitons of funciton loaded from(FAX or VLX) files.%
+Function in lISP source files loaded from the AutoCAD Command prompt may also appear as %
+SUBR\cr\hline
+SYM & Symbols\cr\hline
+VARIANT & Variant\cr\hline
+USUBR & User-defined functions loaded from Lisp source files.\cr\hline
+VLA-object & ActiveX objects\cr\hline
+\end{tabular}
+\end{center}
+\end{table}
+
+\subsection{INT}
+
+\subsection{REAL}
+
+\subsection{STR}
+
+\subsection{LIST}
+
+\subsection{FILE}
+
+\subsection{ENAME}
+
+\subsection{SUBR}
+
+\subsection{VARIANT}
+%}}} end section: Type
+
+%{{{ section: Syntax
+\section{Syntax And Variable}
+
+\subsection{Condition}
+
+\subsubsection{IF PROGN}
+
+\subsubsection{AND OR NOT}
+
+\subsection{Loop}
+
+\subsubsection{WHILE}
+
+\subsubsection{REPEAT}
+
+\subsection{Function}
+
+\subsubsection{Define A Function}
+
+\subsubsection{Define A Command}
+
+\subsection{Scope of Variable}
+%}}} end section: Tyep
+
+%{{{ section: Basic Function
+\section{Basic Function}
+
+\subsection{Basic IO}
+
+\subsection{Manipulate STR}
+
+\primf{strcase}, \primf{strcat}, \primf{strlen}, \primf{substr}\par
+
+
+\subsection{Manipulate LIST}
+
+\subsection{Manipulate Numeric}
+
+\subsection{Others}
+%}}} end section: Basic Function
+
+%{{{ section: Communicate with acad
+\section{Communicate With ACAD}
+%}}} end section: Communicate with acad
+
+%{{{ section: Manipulate autocad object
+\section{Manipulate AutoCAD Object}
+%}}} end section: Manipulate autocad object

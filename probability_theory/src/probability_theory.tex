@@ -1,0 +1,49 @@
+\input{preamble}
+
+\begin{document}
+\frontmatter
+%{{{ title page
+\begin{titlepage}
+    \pdfbookmark[0]{封面}{titlepage}
+    \includepdf[width=\paperwidth,height=\paperheight]{../img/titlepage.pdf}
+\end{titlepage}
+%}}} end title page
+
+\pdfbookmark[0]{目录}{contents}
+\tableofcontents
+
+\mainmatter
+
+%{{{ part 1 -- probability theory
+\part{概率论}
+
+\include{probability_space}
+
+\include{one_dimensional_random_variable}
+
+\include{random_vector}
+
+\include{numerical_characteristics_of_random_variable}
+
+\include{characteristic_function}
+
+\include{limit_theorem_of_independent_random_variable}
+%}}} end part 1
+
+%{{{ part 2 -- mathematical statistics
+\part{数理统计}
+\include{the_basic_concept_of_mathematical_statistics}
+
+\include{parameter_estimation_theory}
+
+\include{statistical_hypothesis_test}
+
+\include{linear_statistical_model}
+%}}} end part 2
+
+\backmatter
+
+\pdfbookmark[-1]{索引}{index}
+\printindex
+
+\end{document}

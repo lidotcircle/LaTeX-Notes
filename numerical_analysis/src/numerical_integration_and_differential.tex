@@ -1,0 +1,39 @@
+\chapter{数值积分和数值微分}
+
+%{{{ section: Newton-cotes integration formula
+\section{Newton-Cotes求积公式}
+
+% Newton-Cotes公式
+\begin{subequations}
+\begin{align}
+\int_a^b\,f(x)\,dx &\approx \sum_{i=0}^n\,f(x_i)A_i\\
+A_i &= (b-a)C^{(n)}_i\\
+C_i^{(n)} &= {(-1)^{n - (n-k)}\over{nk!(n-k)!}}\,\int_0^n\,u\cdots(u-(n-k)+1)(u-(n-k)-1)\cdots(u-n)\,du
+\end{align}
+\end{subequations}
+
+% Newton-Cotes系数的性质
+\begin{subequations}
+\begin{align}
+C^{(n)}_i = C^{(n)}_{n - i}\\
+\sum_{i=0}^n\,C^{(n)}_i = 1
+\end{align}
+\end{subequations}
+%}}} end section: Newton-cotes integration formula
+
+%{{{ section: 复化求积公式
+\section{复化求积公式}
+
+%}}} end section: 复化求积公式
+
+%{{{ section: Romberg求积法
+\section{Romberg求积法}
+%}}} end section: Romberg求积法
+
+%{{{ section: Gauss求积公式
+\section{Gauss求积公式}
+%}}} end section: Gauss求积公式
+
+%{{{ section: 数值微分
+\section{数值微分}
+%}}} end section: 数值微分
