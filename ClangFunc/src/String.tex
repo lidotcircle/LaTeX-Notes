@@ -1,0 +1,263 @@
+\chapter{String}
+
+\section{Function}
+
+%{{{ func : memchr
+\begin{cfunc}{memchr}
+\header{string.h}
+\argu{const void *str, int c, size_t n}
+\ret{void*}
+在\var{str}最大偏移\var{n}内搜索最先出现\var{c}的位置并返回指针.
+\begin{usage}
+\begin{sccode}
+#include<stdio.h>
+#include<string.h>
+
+int main()
+{
+    char* ex = "Life is hard, Haha.\n";
+    char se = 'h';
+
+    char* re = memchr((void*)ex, (int)se, 10);
+    printf("offset of %c in \"%s\" is %ld\n", se, ex,
+        (unsigned long)((unsigned long)re -
+                (unsigned long)ex));
+    return 0;
+}
+\end{sccode}
+\comout
+\begin{sbcode}
+$ gcc -o tt t.c
+$ ./tt
+offset of h in "Life is hard, Haha.
+" is 8
+\end{sbcode}
+\end{usage}
+\end{cfunc}
+%}}}
+
+%{{{ func : memcmp
+\begin{cfunc}{memcmp}
+\ret{int}
+\header{string.h}
+\argu{const void *str1, const void *str2, size\_t n}
+比较\var{str1}和\var{str2}的前\var{n}\bytes
+\begin{usage}
+\begin{sccode}
+#include<stdio.h>
+#include<stdlib.h>
+#include<string.h>
+
+int main()
+{
+    const char *str1 = "when you reach the end \
+of rope, tie a knot in it and hang on.";
+    const char *str2 = "There is nothing permanent except change.";
+
+    if(strcmp(str1, str1, 20) = 0){
+        printf("Equally!\n");
+    }
+
+    if(strcmp(str1, str2, 20) > 0){
+        printf("str1 is great than str2.\n");
+    } else {
+        printf("str1 isn't great than str2.\n");
+    }
+    return 0;
+}
+\end{sccode}
+\comout
+\begin{sbcode}
+$ gcc -o tt tt.c
+$ ./tt
+Equally!
+str1 is great than str2.
+\end{sbcode}
+\end{usage}
+\end{cfunc}
+%}}}
+
+%{{{ func : memcpy
+\begin{cfunc}{memcpy}
+\header{string.h}
+\argu{void* dest, const void* src, size_t n}
+\ret{void*}
+从\var{src}开始复制\var{n}\bytes 到\var{dest}.
+\begin{usage}
+\begin{sccode}
+#include<stdio.h>
+#include<string.h>
+#include<stdlib.h>
+
+int main()
+{
+    const char *ss = "You can do anything, but not everything.";
+    char *dd = (char*)malloc(sizeof(char) * 100);
+
+    if(memcpy(dd, ss, 30)){
+        printf("The dest is \"%s\".\n", dd);
+    } else {
+        perror("Error!\n");
+    }
+    return 0;
+}
+\end{sccode}
+\comout
+\begin{sbcode}
+$ gcc -o tt tt.c
+$ ./tt
+The dest is "You can do anything, but not e".
+\end{sbcode}
+\end{usage}
+\end{cfunc}
+%}}}
+
+%{{{ func : memmove
+\begin{cfunc}{memmove}
+\header{string.h}
+\argu{void *dest, void *src, size_t n}
+\ret{void*}
+和({\em memcpy} \ref{memcpy})相近.
+\end{cfunc}
+%}}}
+
+%{{{ func : memset
+\begin{cfunc}{memset}
+\header{string.h}
+\argu{void *str, int c, size_t n}
+\ret{void*}
+将\var{str}的开头\var{n}\bytes 设置为\var{c}.
+\begin{usage}
+\begin{sccode}
+#include<string.h>
+#include<stdlib.h>
+#include<stdio.h>
+
+int main()
+{
+    char *mm = (char*)malloc(sizeof(char) * 20);
+    if(memset((void*)mm, 'x', 20 - 1) == 0){
+        perror("Error!");
+    } else {
+        printf("\"%s\"\n", mm);
+    }
+    return 0;
+}
+\end{sccode}
+\comout
+\begin{sbcode}
+$ gcc -o tt tt.c
+$ ./tt
+"xxxxxxxxxxxxxxxxxxx"
+\end{sbcode}
+\end{usage}
+\end{cfunc}
+%}}}
+
+%{{{ func : strcat
+\begin{cfunc}{strcat}
+\header{string.h}
+\argu{char *dest, const char *src}
+\ret{char*}
+将\var{src}添加达到\var{dest}尾部.
+\begin{usage}
+\begin{sccode}
+#include<stdio.h>
+#include<string.h>
+
+int main()
+{
+    char dest[] = "Hello "; // Writable memory location.
+    cahr *src = "World!\n"; // Read-only memory location.
+
+    printf("%s", strcat(dest, src));
+    return 0;
+}
+\end{sccode}
+\comout
+\begin{sbcode}
+$ gcc -o tt tt.c
+$ ./tt
+Hello World!
+\end{sbcode}
+\end{usage}
+\end{cfunc}
+%}}}
+
+%{{{ func : strncat
+\begin{cfunc}{strncat}
+\header{string.h}
+\argu{char *dest, const char *src, size_t n}
+\ret{char*}
+将\var{src[0] -- src[n -1]}添加到\var{dest}尾部.
+\begin{usage}
+\begin{sccode}
+#include<stdio.h>
+#include<string.h>
+
+int main()
+{
+    char dest[] = "Hello "; // Writable memory location.
+    char *src = "World!\n"; // Read-only memory location.
+
+    printf("%s", strncat(dest, src, 2));
+    return 0;
+}
+\end{sccode}
+\comout
+\begin{sbcode}
+$ gcc -o tt tt.c
+$ ./tt
+Hello Wo
+\end{sbcode}
+\end{usage}
+\end{cfunc}
+%}}}
+
+%{{{ func : strchr
+\begin{cfunc}{strchr}
+\ret{char*}
+\header{string.h}
+\argu{const char *str, int c}
+搜索\var{str}第一次出现\var{c}的位置, 并返回指针.
+\begin{usage}
+\begin{sccode}
+#include<stdio.h>
+#include<string.h>
+
+int main()
+{
+    char *mm = "There is not charm equal to \
+tenderness of heart.";
+
+    printf("offset of first 'c' in \"%s\" is %ld.\n", mm,
+        (long)((long)strchr(mm, 'c') - (long)mm));
+
+    return 0;
+}
+\end{sccode}
+\end{usage}
+\end{cfunc}
+%}}}
+
+%{{{ cfunc : strcmp
+\begin{cfunc}{strcmp}
+\header{strcmp}
+\argu{const char *str1, const char *str2}
+\ret{int}
+比较\var{str1}和\var{str2}的大小. 返回值: 
+\begin{minipage}[c]{.4\hsize}
+\halign{
+    \hfil#\hfil &\quad#\vrule\quad & \hfil#\hfil\cr
+\noalign{\hrule}
+\strut{\it result} && {\it return}\cr
+\noalign{\hrule}
+\strut$str1 > str2$ &&$ ret > 0$\cr
+\noalign{\hrule}
+\strut$str1 = str2$ && $ ret = 0$\cr
+\noalign{\hrule}
+\strut$str1 < str2$ && $ ret < 0$\cr
+\noalign{\hrule}
+}
+\end{minipage}
+\end{cfunc}

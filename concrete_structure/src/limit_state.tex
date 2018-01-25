@@ -1,0 +1,145 @@
+\chapter{极限状态设计方法}
+
+$\dagger$\noindent{\em 安全性、适用性、耐久性是建筑结构应满足的功能要求\index{三性}}
+
+%{{{ section : load and effect
+\section{荷载与作用}
+
+建筑结构的荷载按照作用时间的长短和性质, 可分为下列三类:
+\begin{itemize}\baselineskip=.2em
+    \item 永久荷载，包括结构自重、土压力、预应力等。
+    \item 可变荷载，包括楼面活荷载、屋面活荷载和积灰荷载、吊车荷载、风荷载、雪荷载、温度作用等。
+    \item 偶然荷载，包括爆炸力、撞击力等。\footnote{建筑结构荷载规范2012}
+\end{itemize}
+
+\subsection{荷载的代表值}
+
+$\dagger$\noindent{\em 四种荷载的代表值，即{\bf 标准值}、{\bf 组合值}、{\bf 频遇值}、{\bf 准永久值}。
+荷载的标准值是荷载的{\bf 基本代表值}\index{荷载的基本代表值}，%
+其他代表值可以在标准值的基础上乘以相应的系数后得到。}
+
+\begin{quote}
+    荷载的标准值是指其在结构的使用期间（一般结构的设计基准期为50年）可能出现的
+    最大荷载值。\index{荷载的标准值}
+\end{quote}
+
+建筑结构设计时，应接下列规定对不同荷载采用不同的代表值:
+
+\begin{itemize}\baselineskip=.2em
+    \item 对永久荷载应采用标准值作为代表值;
+    \item 对可变荷载应根据设计要求采用标准值、组合值、频遇值或准永久值作为代表值。%
+        \hskip.5em \begin{minipage}[c]{.3\hsize}
+            \halign{
+                    \hfill\bf#\hfill & $#$\cr
+                    标准值 & Q_k\cr
+                    组合值 & Q_c = \psi_cQ_k\cr
+                    准永久值 & Q_q = \psi_qQ_k\cr
+                    频遇值 & Q_f = \psi_fQ_k\cr
+                }
+            \end{minipage};
+    \item 对偶然荷载应按建筑结构使用的特点确定其代表值。
+\end{itemize}
+
+%}}} end section : load and effect
+
+%{{{ section : material and resistance
+\section{材料强度}
+
+材料强度的标准值和材料强度的平均值、标准差和保证率有关。
+
+\subsection{材料强度的标准值}
+
+$\dagger$\noindent{\bf 混凝土的立方体抗压强度标准值:}
+\begin{equation}
+    f_{cu,k} = \mu_{f_cu} - 1.645\sigma_{f_cu}
+\end{equation}
+
+\subsection{材料强度的设计值}
+
+设计值取决于标准值和材料分项系数, 如混凝土轴心抗压强度设计值:
+\begin{equation}
+    f_c = f_{ck}/\gamma_c = f_{ck}/1.4
+\end{equation}
+%}}} end section : material and resistance
+
+%{{{ section : limit state design
+\section{极限状态设计}
+
+$\ddagger$\noindent{\em 整个结构或结构的一部分超过某一特定状态就不能满足设计的%
+某一功能要求，这个特定的状态称为该功能的极限状态。\index{极限状态}}
+
+\subsection{承载力极限状态}
+
+$\ddagger$\noindent{\em 承载能力极限状态对应于结构或构件达到最大承载力或达到不适于继续承载的变形状态。%
+\index{承载能力极限状态}}
+
+对于承载能力极限状态，应按荷载的{\bf 基本组合或偶然组合}计算荷载组合的效应设计值，
+并应采用下列设计表达式进行设计:
+\begin{align}
+    \gamma_0S \le R\\
+    R = R(f_c, f_s, a_k, \cdots)/\gamma_{Rd}
+\end{align}
+
+\begin{descff}
+    \factor{$\gamma_0$} 结构重要性系数，
+    应按各有关建筑结构设计规范的规定采用;
+    \factor{$S$} 承载能力极限状态下作用组合的效应设计值:对持久设计状况和短暂设计状况%
+    按作用的基本组合计算; 对地震设计按作用的地震组合计算;
+    \factor{$R_d$} 结构构件抗力的设计值;
+    \factor{$\gamma_{Rd}$} 结构构件的抗力模型不稳定系数;
+    \factor{$a_k$} 几何参数的标准值;
+    \factor{$f_c$} 混凝土强度的设计值;
+    \factor{$f_s$} 钢筋强度的设计值。
+\end{descff}
+
+\subsection{正常使用极限状态}
+
+$\ddagger$\noindent{\em 正常使用极限状态对应于结构或结构构件达到正常使用或耐久性能某项规定限值。%
+\index{正常使用极限状态}}
+
+对于正常使用极限状态，应根据不同的设计要求，采用{\em 荷载的标准组合、
+频遇组合或准永久组合}，并应按下列设计表达式进行设计
+\begin{equation}
+    S_k \le C
+\end{equation}
+\begin{descff}
+    \factor{$S_k$} 正常使用情况下荷载效应组合值;
+    \factor{$C$} 结构或结构构件达到正常使用要求的规定限值，
+    例如变形、裂缝、振幅、加速度、应力等的限值，应按
+    各有关建筑结构设计规范的规定采用。
+\end{descff}
+
+\subsection{荷载组合}
+
+\subsubsection{基本组合}
+\index{荷载的基本组合}
+\begin{subequations}
+    \noindent{\em 可变荷载效应控制的组合}
+    \begin{equation}\label{equ:mutablecom}
+        S_d = \sum_{i\ge 1}\,\gamma_{Gi}S_{Gik} + \gamma_PS_P + \gamma_{Q1}\gamma_{L1}S_{Q1k} + %
+        \sum_{j>1}\,\gamma_{Qj}\psi_{cj}\gamma_{Lj}S_{Qjk}
+    \end{equation}
+    \noindent{\em 永久荷载效应控制的组合}
+    \begin{equation}\label{equ:inmutablecom}
+        S_d = \sum_{i\ge1}\,\gamma_{Gi}S_{Gik} + \gamma_PS_P + \gamma_{L}\,\sum_{j\ge1}\,%
+        \gamma_{Qj}\psi_{cj}S_{Qjk}
+    \end{equation}
+    \begin{descff}
+        \factor{$\gamma_{Gi}$} 第 $i$ 个永久作用的分项系数，应按规范取用。
+        \factor{$\gamma_{Qj}$} 第 $j$ 个可变作用的分项系数，
+            其中 $\gamma_{Q1}$ 为主导可变作用 $S_{Q1}$ 的分项系数。
+        \factor{$\gamma_{Lj}$} 第 $j$ 个可变作用考虑设计使用年限的调整系数，
+            其中 $\gamma_{L}$ 为主导可变作用 $S_{Q1}$ 考虑设计使用年限的调整系数;
+        \factor{$\gamma_{Gik}$} 按第 $i$ 个永久荷载标准值 $G_{ik}$ 计算的作用效应值。
+        \factor{$S_{Qjk}$} 按第 $j$ 个可变荷载标准值 $Q_{jk}$ 计算的荷载效应值，
+            其中 $S_{Q1k}$ 为诸可变荷载效应中起控制作用者;
+        \factor{$\psi_{cj}$} 第 $j$ 个可变荷载 $Q_{i}$ 的组合值系数;
+    \end{descff}
+\end{subequations}
+
+\subsubsection{偶然组合}
+
+\subsubsection{标准组合}
+
+\subsubsection{准永久组合}
+%}}} end section : limit state design

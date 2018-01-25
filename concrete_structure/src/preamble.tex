@@ -3,3 +3,11 @@
 \input{\string~/texrc.tex}
 
 \geometry{tmargin=2cm, rmargin=2cm, bmargin=2cm, lmargin=2cm}
+
+\definecolor{formDesc}{rgb}{0.1,0.2,0.8}
+\newcount\formCount \formCount=0
+\long\def\formDesc#1{\global\advance\formCount by1%
+{\noindent\tt\color{formDesc}\the\formCount.$\,$#1:\newline}}
+
+\long\def\descline{{\hbox to5em{%
+\hskip.5em\vrule width4em height.4em depth-.35em\hskip.5em}}}

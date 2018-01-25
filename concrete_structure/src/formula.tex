@@ -1,0 +1,453 @@
+\appendix
+\chapter{部分公式}
+
+\begin{comment}
+    %{{{ section: 极限状态设计
+    \formCount=0
+    \section{极限状态设计}
+
+    \subsection{荷载标准值}
+
+    \formDesc{结构抗力$R$, 承受作用效应的能力, 是一个随机变量}
+
+    \begin{equation}
+        R = R(\text{材料强度, 几何尺寸, 计算模式等})
+    \end{equation}
+
+    \formDesc{荷载的标准值$P_k$}
+    \begin{align}
+        P_k = \mu_P + 1.645\sigma_P, \quad \mu_P\text{为均值}, \sigma_P\text{为标准差}
+    \end{align}
+
+    \formDesc{永久荷载标准值$G_k$, 按照结构尺寸与材料容重确定}
+    \begin{equation}
+        G_k = \rho\cdot V
+    \end{equation}
+
+    \formDesc{可变荷载标准值$Q_k$}
+    \begin{align}
+        \text{办公楼, } & \text{住宅楼面均布{\bf 活荷载标准值}$Q_k$为$2.0KN/m^2$}\cr
+        \text{办公楼:} \quad & Q_k = \mu_P + 3.16\quad\sigma_P  >95\%\text{的保证率}\cr
+        \text{住宅:} \quad & Q_k = \mu_P + 2.38\quad\sigma_P  >95\%\text{的保证率}
+    \end{align}
+
+    \subsection{强度标准值}
+
+    \formDesc{材料强度标准值$f_k$}
+    \begin{equation}
+        f_k = \mu_f - \alpha\sigma_f, \quad\quad \alpha = 1.645
+    \end{equation}
+
+    \formDesc{钢筋的强度标准值}
+    \par\bigskip
+    钢材出厂前抽样检查标准为"废品限值", 相当于屈服强度平均值减去两倍标准差$(\alpha = 2)$所得数值, 保证率为$94.73\%$.\par
+    \begin{enumerate}
+        \item 对于明显屈服点的热轧钢筋, 取$f_{yk} = \sigma_y$
+        \item 对于无明显屈服点的钢筋, $f_{yk} = 0.8\sigma_b$作为条件屈服点
+    \end{enumerate}
+
+    \formDesc{混凝土的强度标准值$f_k$}
+    \begin{align}
+        f_k = \mu_f - 1.645\sigma_f
+    \end{align}
+
+    \subsection{概率极限状态设计法}
+    \formDesc{结构的极限状态}
+    \par\smallskip
+    \begin{enumerate}
+        \item {\bf 承载能力极限状态}
+        \item {\bf 正常使用极限状态}
+    \end{enumerate}
+    \bigskip
+
+    \formDesc{功能函数$Z = g(X_1, X_2, \ldots, X_n)$, 仅包含作用效应$S$和结构抗力$R$时}
+    \begin{align}
+        Z = g(R, S) = R - S\left\{
+            \begin{array}{rl}
+                \text{机构可靠} & Z > 0\cr
+                \text{结构失效} & Z < 0\cr
+                \text{极限状态} & Z = 0
+        \end{array}\right.
+    \end{align}
+
+    \formDesc{失效概率$p_f$}
+    \begin{equation}
+        p_f = P(Z = R -S < 0) = \int_{-\infty}^{0}\,f(Z)\,dZ
+    \end{equation}
+
+    \formDesc{可靠指标$\beta$}
+    \begin{align}
+        \beta &= {\mu_z\over\sigma_z} = {\mu_R - \mu_S\over\sqrt{\sigma_R^2 + \sigma_S^2}}\\
+        p_f &= \Phi\left(-{\mu_z\over\sigma_z}\right) = \Phi\left(-\beta\right)
+    \end{align}
+
+    \subsection{概率极限状态设计\descline 分项系数法}
+
+    \formDesc{极限状态表达式}
+    \begin{equation}
+        \gamma_RR_k = \gamma_SS_k
+    \end{equation}
+    \begin{descff}
+        \factor{$R_k$} 抗力的标准值
+        \factor{$S_k$} 作用标准值的效应
+        \factor{$\gamma_R$} 抗力的分项系数
+        \factor{$\gamma_S$} 作用的分项系数
+    \end{descff}
+
+    \formDesc{基本组合}
+    \begin{subequations}
+        {\em 可变作用控制的情况:}
+        \begin{equation}
+            S_d = \gamma_GS_{Gk} + \gamma_{Q1}S_{Q1k} + \sum_{i = 2}^n\,\gamma_{Qi}\psi_{ci}S_{Qik}
+        \end{equation}
+        {\em 永久作用控制的情况:}
+        \begin{equation}
+            S_d = \gamma_GS_{Gk} + \sum_{i = 1}^n\,\gamma_{Qi}\psi_{ci}S_{Qik}
+        \end{equation}
+        \begin{description}\baselineskip=.8em
+            \item{$S_{Gk}$、$\gamma_G$} 永久作用及其分项系数
+            \item{$S_{Q1k}$、$\gamma_{Q1}$、$S_{Qik}$、$\gamma_{Qi}$}
+        \end{description}
+    \end{subequations}
+    第一可变作用(最主要的可变作用)的效应、
+    %}}} end section: 极限状态设计
+\end{comment}
+
+%{{{ section: 受弯
+\formCount=0
+\section{受弯}
+
+\formDesc{受弯截面受压区压应力的合力$C$和$C$到中和轴的距离$y_c$}
+\begin{align}
+C &= x_c\cdot b\cdot{C_{cu}\over{\varepsilon_{cu}}}=k_1f_cbx_c\\
+ y_c &= x_c\cdot{y_{cu}\over{\varepsilon_{cu}}}
+\end{align}
+
+\formDesc{实用等效矩形应力图来简化$C$}
+\begin{align}
+C&=k_1f_cbx_c = \alpha_1f_cbx\\
+x&=2(x_c - y_c) = 2(1-k_2)x_c = \beta_1x_c
+\end{align}
+
+\formDesc{$\alpha_1$, $\beta_1$和$k_1$, $k_2$的关系}
+\begin{align}
+\alpha_1 &= {k_1\over\beta_1}= {k_1\over2(1-k_2)}\\
+\beta_1 &= {x\over x_c} = 2(1-k_2)
+\end{align}
+
+\formDesc{钢筋极限应变$\varepsilon_y$}
+\begin{align}
+\varepsilon_y = {f_y\over E_y}
+\end{align}
+
+\formDesc{破坏时中和轴高度$x_{cb}$}
+\begin{align}
+{x_{cb}\over h_0} = {\varepsilon_{cu}\over{\varepsilon_y}+\varepsilon_{cu}} = %
+{x_b\over\beta_1h_0}={\varepsilon_{cu}\over\varepsilon_{cu} + \varepsilon_y}
+\end{align}
+
+\formDesc{破坏时等效应力图中和轴高度$x_b$}
+\begin{align}
+\xi_b = {x_b\over h_0} = {\beta_1\over 1 +{f_y\over{E_s\cdot\varepsilon_{cu}}}}
+\end{align}
+
+\formDesc{相对受压区高度, 配筋系数$\xi$}
+\begin{equation}
+\xi = {x\over h_0}
+\end{equation}
+
+\formDesc{相对界限高度$\xi_b$}
+\begin{equation}
+\xi_b = {\beta_1\over{1 + {f_y\over{E_s\cdot\varepsilon_{cu}}}}}
+\end{equation}
+
+\formDesc{界限配筋率$\rho_b$}
+\begin{align}
+\alpha_1f_cbx_b= f_yA_s\,\Longrightarrow\,%
+\rho_b = {A_s\over bh_0} = \alpha_1\xi_b{f_c\over f_y}
+\end{align}
+
+\formDesc{最小配筋率$\rho_{min}$}
+\vskip10pt
+{\bf 最小配筋率$\rho_{min}$往往是根据经验得出的, 对于适筋梁配筋率$\rho\ge\rho_{min}{h\over h_0}$。%
+    对于受弯构件，偏心受拉，轴心受拉构件，其一侧纵向受拉钢筋的最小配筋率%
+$\rho_{min} = \max(0.2\%, 0.45{f_t\over f_y})$。受压构件一侧纵向受力钢筋的最小配筋率为 $0.2\%$, %
+全部纵向钢筋的最小配筋率可通过查表确定。}
+\vskip15pt
+
+\formDesc{单筋矩形截面受弯构件正截面极限承载力$M_u$}
+\begin{align}
+M_u &= f_y\cdot A_s(h_0 - {x\over 2}) = \alpha_1f_c bx(h_0 - {x\over 2})\cr
+&= f_yA_sh_0(1-0.5\xi) = \alpha_1f_cbh_0^2(1-0.5\xi)
+\end{align}
+
+
+\formDesc{$M_u$的最大值$M_{u,max}$}
+\begin{align}
+    \rho \le \rho_b &= \alpha_1\xi_b{f_c\over f_y}\,\Longleftrightarrow\, x\le \xi_bh_0\,\Longrightarrow\cr
+    M_{u,max} &= (\alpha_1f_cbx(h_0-{x\over 2}))_{x={\xi_bh_o}} = \alpha_1f_cbh_0^2\xi_b(1-{\xi_b\over2})
+\end{align}
+
+\formDesc{截面抵抗矩系数$\alpha_s$与内力臂系数$\gamma_s$}
+\begin{align}
+    \left\{\begin{array}{c}
+\alpha_s = {M\over \alpha_1f_cbh_0^2} = \xi(1-{\xi\over 2})\\
+~\\
+\gamma_s = {h_0 - {x\over 2}\over h_0} = {z\over h_0} = (1 - {\xi\over 2})
+\end{array}\right.\,\Longrightarrow\,\left\{\begin{array}{c}
+\xi = 1 - \sqrt{1-2\alpha_s}\\
+~\\
+\gamma_s = {1 + \sqrt{1 - 2\alpha_s}\over 2}
+\end{array}\right.
+\end{align}
+
+\formDesc{单筋矩形截面最大受弯承载力和最大截面抵抗矩系数}
+\begin{align}
+M_{u,max} &= \alpha_{s, max}\cdot\alpha_1f_cbh_0^2\cr
+\alpha_{s, max} &= \xi_b(1-0.5\xi_b)
+\end{align}
+
+\formDesc{$a_s^\prime$, $\varepsilon_s^\prime$, $f_y^\prime$解释}
+\begin{align}
+    a_s^\prime &= \text{受压钢筋保护层厚度}\cr
+    \varepsilon &= {x_c - a_s^\prime\over x_c}\varepsilon_{cu} = %
+    (1 - {\beta_1a_s^\prime\over x})\varepsilon_{cu}\cr
+    f_y^\prime &= \text{钢筋的抗压屈服强度, 当}x\ge2a_s^\prime\text{时, 抗压强度取}f_y^\prime
+\end{align}
+
+\formDesc{单筋矩形截面纵向受拉钢筋的最大截面面积$A_{s, max}$}
+\begin{align}
+    A_{s, max} = {\xi_b\alpha_1f_cbh_0\over f_y}
+\end{align}
+
+\formDesc{双筋矩形截面的截面平衡方程}
+\begin{align}
+    \left\{\begin{array}{l}
+        \alpha_1f_cbx + f_y^\prime A_s^\prime = f_y A_s\cr
+        ~\cr
+        \underbrace{\alpha_1f_cbx\cdot\left(h_0 - {x\over 2}\right) + f_y^\prime A_s^\prime\cdot\left(h_0 - a_s^\prime\right)}_{x\ge2a_s^\prime} = %
+        \underbrace{f_yA_s\cdot\left(h_0 - a_s^\prime\right)}_{x<2a_s^\prime} = M_u
+\end{array}\right.
+\end{align}
+
+%}}} end section: 受弯
+
+%{{{ section: 受剪
+\section{受剪}
+\formCount=0
+
+\formDesc{主拉应力$\sigma_{tp}=\sigma_{max}$和主压应力$\sigma_{cp}=\sigma_{min}$}
+\begin{align}
+    \text{主拉应力:} \quad & \sigma_{tp} = {\sigma\over 2} + {\sqrt{\sigma^2+4\tau^2}\over2}\cr
+    \text{主压应力:} \quad & \sigma_{cp} = {\sigma\over 2} - {\sqrt{\sigma^2+4\tau^2}\over2}
+\end{align}
+
+\formDesc{拉主应力(大主应力)的作用方向和梁轴线的夹角$\alpha$}
+\begin{equation}
+    \tan(2\alpha) = -{2\tau\over\sigma}
+\end{equation}
+
+\formDesc{剪跨比$\lambda$}
+\begin{equation}
+    \lambda = {a\over h_0}
+\end{equation}
+
+\formDesc{广义剪跨比$\lambda$}
+\begin{align}
+    \lambda = {M\over Vh_0} = \left\{\begin{array}{lr}
+            {a\over h_0} & \text{, 集中荷载作用}\cr
+            {\beta - \beta^2\over1 - 2\beta}\cdot{l\over h_0} & \text{, 均布荷载作用} 
+    \end{array}\right.
+\end{align}
+
+\formDesc{箍筋配筋率$\rho_{sv}$}
+\begin{align}
+    \rho_{sv} = {A_{sv}\over bs} = {n\cdot A_{sv1}\over bs}
+\end{align}
+
+\formDesc{剪压破坏时, 斜截面所承受的剪力设计值$V_u$}
+\begin{align}
+    V_u &= V_c + V_s + V_{sb}\cr
+    V_c &= \left\{\begin{array}{ll}
+            0.7f_tbh_0 & \text{, 均布荷载时}\cr
+    {1.75\over\lambda + 1}f_tbh_0 & \text{, 集中荷载下的独立梁}\end{array}\right\} = \alpha_{cv}f_tbh_0\cr
+    V_s &= f_{yv}{A_{sv}\over s}h_0\cr
+    v_{sb} & = 0.8f_yA_{sb}\sin\alpha_s
+\end{align}
+\begin{descff}
+\factor{$V_u$} 梁斜截面受剪承载力设计值
+\factor{$V_c$} 混凝土剪压区受剪承载力设计值
+\factor{$V_{s}$} 与斜裂缝相交的箍筋的受剪承载力设计值
+\factor{$V_{sb}$} 与斜裂缝相交的弯起钢筋的受剪承载力设计值
+\factor{$A_{sv}$} 配置在同一截面内箍筋各肢的全部截面面积, 取$nA_{sv1}$, 此处, $n$为%
+    同一截面内箍筋的肢数, $A_{sv1}$为单肢箍筋的截面面积
+\factor{$\alpha_{cv}$} 受剪承载力系数, 一般受弯构件取$0.7$. %
+    集中荷载作用下的独立梁取$1.75\over\lambda + 1$, $\lambda = \left\{\begin{array}{ll}
+            1.5 & : \lambda < 1.5\cr
+            {a\over h_0} & : \lambda\in[1.5, 3]\cr
+    3 & : \lambda > 3\end{array}\right.$.
+\factor{$s$} 沿构件长度方向的箍筋间距
+\factor{$f_{yu}$} 箍筋的抗拉强度设计值
+\end{descff}
+
+\formDesc{箍筋的最小配筋率$\rho_{sv, min}$}
+\begin{align}
+    V > \alpha_{cv}f_tbh_0\,\Longrightarrow\, \rho_{sv} &= {A_{sv}\over bs} \ge\rho_{sv, min}\cr
+    \rho_{sv, min} = 0.24{f_t\over f_{yv}}
+\end{align}
+
+%}}} end section: 受剪
+
+%{{{ section: 受压
+\section{受压}
+\formCount=0
+\subsection{轴心受压}
+\formDesc{稳定系数$\phi$, 通过查表得到}
+\begin{equation}
+    \phi = {N_u^l\over N_u^s}
+\end{equation}
+
+\formDesc{轴心受压构件的承载力}
+\begin{equation}
+    N_u = 0.9\phi(f_cA+f^{\prime}_yA^{\prime}_s)
+\end{equation}
+
+\formDesc{螺旋式或焊接式间接钢筋柱的承载力}
+\begin{equation}
+    N_u = 0.9(f_cA_{cor} + 2\alpha f_yA_{ss0} + f^{\prime}_yA^{\prime}_s)
+\end{equation}
+
+\subsection{二阶效应}
+\formDesc{考虑 $P-\delta$ 二阶效应的条件}
+\begin{itemize}
+    \item ${M_1\over M_2} > 0.9$
+    \item 轴压比${N\over f_cA} > 0.9$
+    \item ${l_c\over i} > 34 - 12(M_1/M_2)$
+\end{itemize}
+
+\formDesc{$P-\delta$ 二阶效应中截面弯矩设计值}
+\begin{align}
+    M &= C_m\eta_{ns}M_2\cr
+    C_m &= 0.7 + 0.3{M_1\over M_2}\cr
+    \eta_{ns} &= 1 + {1\over{1300\left({M_2\over N} + e_a\right)/h_0}}\left({l_c\over h}\right)^2\xi_c\cr
+    \xi_c &= {0.5f_cA\over N}
+\end{align}
+
+\formDesc{计算$e_0, e_a, e_i, e, e^\prime$}
+\begin{descff}
+\factor{$e_0$\quad}轴向力对截面重心的偏心距, $\displaystyle e_0 = M/N$
+\factor{$e_a$\quad}附加偏心距, 其值取偏心方向截面尺寸的$1/30$和$20mm$中的较大者
+\factor{$e_i$\quad}初始偏心距, $\displaystyle e_i = e_0 + e_a$
+\factor{$e  $\quad}轴向力作用点至受拉钢筋 $A_s$ 合力点之间的距离, %
+    $\displaystyle e = e_i + {h\over 2} - a_s$
+\factor{$e^{\prime}$\quad}轴向力作用点至受压钢筋 $A_s^\prime$ 合力点之间的距离, %
+    $\displaystyle e^\prime = {h\over 2} - e_i - a_s^\prime$
+\end{descff}\bigskip
+
+\formDesc{大偏心受压的平衡方程}
+\begin{align}
+    N_u &= \alpha_1f_cbx + f_y^\prime A_s^\prime - f_yA_s\\
+    N_Ue &= \alpha_1f_cbx\left(h_0 - {x\over2}\right) + f_y^\prime A_s^\prime\left(h_0 - a_s^\prime\right)
+\end{align}
+
+\formDesc{$A_s$ 受拉时, 小偏心受压的平衡方程}
+\begin{align}
+    N_u &= \alpha_1f_cbx + f_y^\prime A_s^\prime - \sigma_yA_s\label{eqa:baleqaxpx}\\
+    N_ue &= \alpha_1f_cbx\left(h_0 - {x\over2}\right) + f_y^\prime A_s^\prime\left(h_0 - %
+    a_s^\prime\right)\\
+    N_ue^\prime &= \alpha_1f_cbx\left({x\over2} - a_s^\prime\right) - \sigma_sA_s(h_0 - a_s^\prime)
+\end{align}
+
+\formDesc{小偏心受压中钢筋拉应力 $\sigma_s$ 的取值}
+\begin{equation}
+    \sigma_s = {\xi - \beta_1\over\xi_b - \beta_1}f_y
+\end{equation}
+
+\subsection{偏心受压的截面设计}
+\formDesc{大偏心受压的截面设计, $A_s, A_s^\prime$ 均未知, 取 $\xi = \xi_b$}
+\begin{align}
+    A_s^\prime = {Ne - \alpha_1f_cbh_0^2\xi_b\left(1-0.5\xi_b\right)\over %
+    f_y^\prime\left(h_0 - a_s^\prime\right)}\\
+    A_s = {\alpha_1f_cbh_0\xi_b - N\over f_y} + {f_y^\prime\over f_y}A_s^\prime
+\end{align}
+
+\formDesc{大偏心受压的截面设计, $A_s$ 未知, $A_s^\prime$ 已知. 和双筋截面相仿}
+\begin{align}
+    M_{u2} &= Ne - f_y^\prime A_s^\prime\left(h_0 - a_s^\prime\right)\\
+    \alpha_s &= {M_{u2}\over\alpha_1f_cbh_0^2}\quad%
+    \Longrightarrow\quad\xi=1-\sqrt{1-2\alpha_s}\\
+    A_s &= {N_u - \alpha_1f_cbh_0\xi - f_y^\prime A_s^\prime\over f_y}
+\end{align}
+
+\formDesc{小偏心受压的截面设计中 $A_s$ 的取值}
+\begin{align}
+    A_s = \left\{\begin{array}{l l}
+            \rho_{min}bh = 0.002bh & , N \le f_cbh\cr
+            \underbrace{\max\left({N_ue^\prime - \alpha_1f_cbh\left(h_0^\prime - {h\over2}\right)\over %
+                f_y^\prime\left(h_0^\prime - a_s\right)}, \rho_{min}bh\right)}_{%
+            \star{\bigl(e^\prime = {h\over2} - a_s^\prime - (e_0 -e_a)\bigr)}}& , N > f_cbh
+    \end{array}\right.
+\end{align}
+
+\formDesc{小偏心受压的截面设计中 $\xi$ 的计算}
+\begin{align}
+    \xi &= u + \sqrt{u^2 + v}\cr
+    u &= a_s^\prime + {f_yA_s\over \left(\xi_b - \beta_1\right)\alpha_1f_cbh_0}%
+    \left(1 - {a_s^\prime\over h_0}\right)\cr
+    v &= {2Ne^\prime\over\alpha_1f_cbh_0^2} - {2\beta_1f_yA_s\over%
+    \left(\xi_b-\beta_1\right)\alpha_1f_cbh_0}\left(1 - {a_s^\prime\over h_0}\right)
+\end{align}
+
+\formDesc{小偏心受压的截面设计中 $A_s^\prime$ 的计算}
+\begin{align}
+    \left\{\begin{array}{ll}
+            \text{求的$\xi$后, 带入平衡方程(\ref{eqa:baleqaxpx})} &%
+            , \xi_{cy} > \xi > \xi_b\cr
+            \xi = {a_s^\prime\over h_0} + \sqrt{\left({a_s^\prime\over%
+                    h_0}\right) + 2\left[{N\over \alpha_1f_cbh_0^2} - %
+            {A_s\over bh_0}{f_y^\prime\over\alpha_1f_c}\left(1-{a_s^\prime\over h_0}\right)\right]} &%
+            , h/h_0 > \xi \ge\xi_{cy}\cr
+            A_s^\prime = {Ne - f_cbh\,(h_0 - 0.5h)\over f_y^\prime\,(h - a_s^\prime)} &%
+            , \xi\ge\xi_{cy}\quad\&\&\quad\xi\ge{h\over h_0}
+    \end{array}\right.
+\end{align}
+
+\formDesc{对称配筋中的大偏心情况}
+\begin{align}
+    x &= {N\over \alpha_1f_cb}\cr
+    A_s &= A_s^\prime = {Ne - \alpha_1f_cbx(h_o - {x\over2})\over f_y^\prime\,(h_0 - a_s^\prime)}
+\end{align}
+
+\formDesc{对称配筋中的小偏心情况}
+\begin{align}
+    \xi &= {N - \alpha_1f_cbh_0\xi_b\over{{Ne - 0.43\alpha_1f_cbh_0^2\over%
+    {\left(\beta_1 - \xi_b\right)\left(h_0 - a_s^\prime\right)}} + \alpha_1f_cbh_0}} + \xi_b\cr
+    A_s &= A_s^\prime = {Ne - \alpha_1f_cbh_0^2\xi(1 - 0.5\xi)\over f_y^\prime\,(h_0 - a_s^\prime)}
+\end{align}
+
+%}}}
+
+%{{{ section : 受拉
+
+%}}} end section : 受拉
+
+%{{{ section : 受扭
+\section{受扭}
+\formCount=0
+
+\formDesc{矩形截面受扭塑性抵抗矩 $W_t$}
+\begin{equation}
+    W_t = {b^2\over 6}(3h - b)
+\end{equation}
+
+\formDesc{开裂扭矩的计算公式}
+\begin{equation}
+    T_{cr} = 0.7f_tW_t
+\end{equation}
+
+\formDesc{受扭构件纵筋与箍筋的配筋强度比 $\eta$ }
+\begin{equation}
+    \eta = {f_y\cdot A_{stl}\cdot s\over f_{yv}\cdot A_{st1}\cdot u_{cor}}
+\end{equation}
+
+%}}} end secton : 受扭

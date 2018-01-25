@@ -7,29 +7,29 @@ ifeq ($(OS), Windows_NT)
 	cp=cp
 	rm=del
 	rm_pdf=$(rm) *pdf 2> nul
+	mv=move
 else
 	cd=cd
 	cp=cp
 	rm=rm -f
 	rm_pdf=$(rm) *pdf
+	mv=mv
 endif
 
 mk_for_dir=FILE.mk
 
-dirs=$(patsubst %/, %/src, $(sort $(dir $(wildcard */*))))
+projects=$(patsubst %/, %, $(sort $(dir $(wildcard */*))))
+dirs=$(patsubst %, %/src, $(projects))
 
-all : $(dirs)
+all : $(projects)
 
-$(dirs) : FORCE
-	@$(cp) $(mk_for_dir) $@ && $(cd) $@ && echo $@ &&\
-		$(MAKE) -f $(mk_for_dir) --eval "PROJECT=$(patsubst %/src, %, $@)" all && \
-		$(MAKE) -f $(mk_for_dir) --eval "PROJECT=$(patsubst %/src, %, $@)" all && \
-		$(rm) $(mk_for_dir) && $(cp) $(patsubst %/src, %, $@).pdf ../..
+$(projects) : FORCE
+	@$(cp) $(mk_for_dir) $@/src && $(cd) $@/src && echo $@ &&\
+		$(MAKE) -f $(mk_for_dir) --eval "PROJECT=$@" all && \
+		$(MAKE) -f $(mk_for_dir) --eval "PROJECT=$@" all && \
+		$(rm) $(mk_for_dir) && $(mv) $@.pdf ../.. > nul
 
 FORCE:
-
-test : FORCE
-	echo $(foreach dir, $(dirs), $(shell echo $(dir)))
 
 clean : FORCE
 	@echo Remove all pdf file && $(rm_pdf) && \

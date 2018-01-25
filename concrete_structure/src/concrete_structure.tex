@@ -1,17 +1,21 @@
-\input{concrete_structure.tex}
+\input{preamble}
 
 \begin{document}
 \frontmatter
 \pdfbookmark[0]{目录}{contents}
 
 \mainmatter
+\include{limit_state}
 
 \include{mechanical_properties_of_materials}
 
 \include{bending_bearing_capacity_of_position_section_in_bending_structure}
 
+\numberwithin{equation}{section}
+\include{formula}
+
 \backmatter
+
 \pdfbookmark[0]{索引}{index}
 \printindex
-
 \end{document}

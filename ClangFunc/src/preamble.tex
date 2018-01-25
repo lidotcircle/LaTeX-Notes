@@ -1,0 +1,28 @@
+\documentclass[a4paper, oneside]{book}
+
+\input{\string~/texrc.tex}
+
+\geometry{tmargin=2cm, rmargin=2cm, bmargin=2cm, lmargin=2cm}
+
+\makeatletter
+
+\titleformat{\chapter}[display]{\bfseries\huge\itshape}%
+{\ifnum\thechapter>0 Chapter\ \thechapter\else\vskip-.5ex \fi}%
+{\ifnum\thechapter>0 .5ex\fi}%
+{\global\func@count=0 \rule{\hsize}{1.5pt}\vskip 1ex\centering\huge}%
+[\vskip-.5ex \rule{\hsize}{.5pt}]
+
+\definecolor{color@var}{rgb}{0.2, 0.8, 0.2}
+\def\var#1{{\ \color{color@var}\tt\lstinline!#1!\ }}
+\definecolor{color@cons}{rgb}{0.7, 0.2, 0.1}
+\def\cons#1{{\index{#1}\ \color{color@var}\tt\lstinline!#1!\ }}
+\def\fname#1{\cfunc@name{#1}}
+\def\ftype#1{\cfunc@type{#1}}
+\def\fheader#1{\cfunc@header{#1}}
+
+\def\byte{{\it byte}}
+\def\bytes{{\it bytes}}
+\def\bit{{\it bit}}
+\def\bits{{\it bits}}
+
+\makeatother
